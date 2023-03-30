@@ -50,7 +50,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('posyandu/hapus', 'Posyandu::hapus');
 });
 
-$routes->group('petugas', ['filter' => 'admin'], static function ($routes) {
+$routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->get('/', 'Home::petugas');
 });
 

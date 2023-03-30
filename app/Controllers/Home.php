@@ -9,6 +9,7 @@ class Home extends BaseController
         if (session()->has('user')) {
             return redirect()->to(session()->get('user')->user_type);
         }
+
         // dd(session());
         return redirect()->to('auth');
     }
@@ -23,6 +24,6 @@ class Home extends BaseController
         helper('user');
         $data['title'] = 'Dashboard';
 
-        return view('dashboards/admin', $data);
+        return view('dashboards/petugas', $data);
     }
 }

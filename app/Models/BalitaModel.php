@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class BalitaModel extends Model
+{
+    protected $DBGroup          = 'default';
+    protected $table            = 'balita';
+    protected $primaryKey       = 'balita_id';
+    protected $useAutoIncrement = true;
+    protected $insertID         = 0;
+    protected $returnType       = 'object';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'balita_nama',
+        'balita_jk',
+        'balita_umur',
+        'balita_tgllahir',
+        'balita_orangtua',
+        'balita_alamat',
+        'posyandu_id',
+    ];
+
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    // Validation
+    protected $validationRules      = [
+        'balita_nama' => 'reqiured',
+        'balita_jk' => 'reqiured',
+        'balita_umur' => 'reqiured',
+        'balita_tgllahir' => 'reqiured',
+        'balita_orangtua' => 'reqiured',
+        'balita_alamat' => 'reqiured',
+        'posyandu_id' => 'reqiured',
+    ];
+    protected $validationMessages   = [];
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
+
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert   = [];
+    protected $afterInsert    = [];
+    protected $beforeUpdate   = [];
+    protected $afterUpdate    = [];
+    protected $beforeFind     = [];
+    protected $afterFind      = [];
+    protected $beforeDelete   = [];
+    protected $afterDelete    = [];
+
+    public function findBalita($balita_id = null)
+    {
+        $this->join('posyandu', 'posyandu.posyandu_id = balita.posyandu_id');
+        if ($balita_id == null) {
+            return $this->find();
+        }
+        return $this->find($balita_id);
+    }
+
+    public function byPosyandu($posyandu_id)
+    {
+        $this->where('posyandu_id', $posyandu_id);
+        return $this->find();
+    }
+}
