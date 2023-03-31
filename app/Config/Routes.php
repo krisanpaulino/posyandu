@@ -52,6 +52,11 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->get('/', 'Home::petugas');
+    $routes->get('balita', 'Balita::index');
+    $routes->get('balita/(:num)', 'Balita::detail/$1');
+    $routes->post('balita/tambah', 'Balita::store');
+    $routes->post('balita/update', 'Balita::update');
+    $routes->post('balita/hapus', 'Balita::delete');
 });
 
 

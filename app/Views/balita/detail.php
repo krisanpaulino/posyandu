@@ -7,6 +7,7 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/balita') ?>">Balita</a></li>
                     <li class="breadcrumb-item active"><?= $title ?></li>
                 </ol>
             </div>
@@ -36,58 +37,12 @@
                 <h4 class="card-title"></h4>
                 <p class="card-title-desc"></p>
                 </p>
-                <!-- end row -->
-                <!-- Content Here -->
-                <div class="mb-4">
-                    <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
-                </div>
-                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Nama Balita</th>
-                            <th>JK</th>
-                            <th>Tgl Lahir</th>
-                            <th>OrangTua</th>
-                            <th>Umur(bln)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($balita as $b) : ?>
-                            <tr>
-                                <td><?= $b->balita_nama ?></td>
-                                <td><?= $b->balita_jk ?></td>
-                                <td><?= $b->balita_tgllahir ?></td>
-                                <td><?= $b->balita_orangtua ?></td>
-                                <td><?= $b->balita_umur ?></td>
-                                <td>
-                                    <form action="<?= base_url(session('user')->user_type . '/balita/hapus') ?>" method="post">
-                                        <input type="hidden" name="balita_id" value="<?= $b->balita_id ?>">
-                                        <a href="<?= base_url(session('user')->user_type . '/balita/' . $b->balita_id) ?>" class="badge bg-primary">Detail</a>
-                                        <button type="submit" class="badge bg-danger border" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> <!-- end col -->
-</div>
 
-<form action="<?= base_url(session('user')->user_type . '/balita/tambah') ?>" method="post" autocomplete="off">
-    <div id="tambah" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Tambah Balita</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+                <form action="<?= base_url(session('user')->user_type . '/balita/update') ?>" method="post">
+                    <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
                     <div class="form-group mb-4">
                         <label for="balita_nama">Nama Balita</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama') ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama', $balita->balita_nama) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_nama'])) : ?>
                                 <?= session('errors')['balita_nama'] ?>
@@ -96,10 +51,9 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_jk">Jenis Kelamin</label>
-                        <select class="form-select <?= (isset(session('errors')['balita_jk'])) ? 'is-invalid' : '' ?>" id="balita_jk" name="balita_jk" required>
-                            <option value="">Pilih JK</option>
-                            <option value="L" <?= (old('balita_jk' == 'L')) ? 'se;ected' : '' ?>>Laki-Laki</option>
-                            <option value="P" <?= (old('balita_jk' == 'P')) ? 'se;ected' : '' ?>>Perempuan</option>
+                        <select class="form-select <?= (isset(session('errors')['balita_jk'])) ? 'is-invalid' : '' ?>" id="balita_jk" name="balita_jk">
+                            <option value="L" <?= ($balita->balita_jk == 'L') ? 'selected' : '' ?>>Laki-Laki</option>
+                            <option value="P" <?= ($balita->balita_jk == 'P') ? 'selected' : '' ?>>Perempuan</option>
                         </select>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_jk'])) : ?>
@@ -107,10 +61,9 @@
                             <?php endif; ?>
                         </div>
                     </div>
-
                     <div class="form-group mb-4">
                         <label for="balita_umur">Umur Balita (bln)</label>
-                        <input type="number" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur') ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur', $balita->balita_umur) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_umur'])) : ?>
                                 <?= session('errors')['balita_umur'] ?>
@@ -119,7 +72,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_tgllahir">Tgl Lahir Balita</label>
-                        <input type="text" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy" class="form-control input-mask <?= (isset(session('errors')['balita_tgllahir'])) ? 'is-invalid' : '' ?>" id="balita_tgllahir" name="balita_tgllahir" value="<?= old('balita_tgllahir') ?>">
+                        <input type="text" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy" class="form-control input-mask <?= (isset(session('errors')['balita_tgllahir'])) ? 'is-invalid' : '' ?>" id="balita_tgllahir" name="balita_tgllahir" value="<?= old('balita_tgllahir', $balita->balita_tgllahir) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_tgllahir'])) : ?>
                                 <?= session('errors')['balita_tgllahir'] ?>
@@ -128,7 +81,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_orangtua">Orang Tua Balita</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_orangtua'])) ? 'is-invalid' : '' ?>" id="balita_orangtua" name="balita_orangtua" value="<?= old('balita_orangtua') ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_orangtua'])) ? 'is-invalid' : '' ?>" id="balita_orangtua" name="balita_orangtua" value="<?= old('balita_orangtua', $balita->balita_orangtua) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_orangtua'])) : ?>
                                 <?= session('errors')['balita_orangtua'] ?>
@@ -137,7 +90,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_alamat">Alamat</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_alamat'])) ? 'is-invalid' : '' ?>" id="balita_alamat" name="balita_alamat" value="<?= old('balita_alamat') ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_alamat'])) ? 'is-invalid' : '' ?>" id="balita_alamat" name="balita_alamat" value="<?= old('balita_alamat', $balita->balita_alamat) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_alamat'])) : ?>
                                 <?= session('errors')['balita_alamat'] ?>
@@ -148,9 +101,8 @@
                         <div class="form-group mb-4">
                             <label for="posyandu_id">Posyandu</label>
                             <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
-                                <option value="">Pilih Posyandu</option>
                                 <?php foreach ($posyandu as $p) : ?>
-                                    <option value="<?= $p->posyandu_id ?>"><?= $p->posyandu_nama ?></option>
+                                    <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == $balita->posyandu_id) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">
@@ -160,14 +112,12 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Tutup</button>
-                    <button type="sumbit" class="btn btn-primary waves-effect waves-light">Tambah</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-</form>
+                    <div class="form-group">
+                        <button type="sumbit" class="btn btn-primary waves-effect waves-light">Ubah Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
 <?= $this->endSection(); ?>

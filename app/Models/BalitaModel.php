@@ -33,13 +33,13 @@ class BalitaModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'balita_nama' => 'reqiured',
-        'balita_jk' => 'reqiured',
-        'balita_umur' => 'reqiured',
-        'balita_tgllahir' => 'reqiured',
-        'balita_orangtua' => 'reqiured',
-        'balita_alamat' => 'reqiured',
-        'posyandu_id' => 'reqiured',
+        'balita_nama' => 'required',
+        'balita_jk' => 'required',
+        'balita_umur' => 'required',
+        'balita_tgllahir' => 'required',
+        'balita_orangtua' => 'required',
+        'balita_alamat' => 'required',
+        'posyandu_id' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

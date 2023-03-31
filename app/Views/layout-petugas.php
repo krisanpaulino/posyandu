@@ -115,9 +115,9 @@
                         </li>
 
                         <li>
-                            <a href="<?= base_url('petugas/bayi') ?>" class="waves-effect">
+                            <a href="<?= base_url('petugas/balita') ?>" class="waves-effect">
                                 <i class="ri-home-2-line"></i>
-                                <span>Data Bayi</span>
+                                <span>Data Balita</span>
                             </a>
                         </li>
                     </ul>
