@@ -98,8 +98,8 @@
                         <label for="balita_jk">Jenis Kelamin</label>
                         <select class="form-select <?= (isset(session('errors')['balita_jk'])) ? 'is-invalid' : '' ?>" id="balita_jk" name="balita_jk" required>
                             <option value="">Pilih JK</option>
-                            <option value="L" <?= (old('balita_jk' == 'L')) ? 'se;ected' : '' ?>>Laki-Laki</option>
-                            <option value="P" <?= (old('balita_jk' == 'P')) ? 'se;ected' : '' ?>>Perempuan</option>
+                            <option value="L" <?= (old('balita_jk' == 'L')) ? 'selected' : '' ?>>Laki-Laki</option>
+                            <option value="P" <?= (old('balita_jk' == 'P')) ? 'selected' : '' ?>>Perempuan</option>
                         </select>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_jk'])) : ?>
