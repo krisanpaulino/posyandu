@@ -48,6 +48,10 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('posyandu', 'Posyandu::index');
     $routes->post('posyandu/tambah', 'Posyandu::store');
     $routes->post('posyandu/hapus', 'Posyandu::hapus');
+
+    $routes->get('periode', 'Periode::index');
+    $routes->post('periode/tambah', 'Periode::store');
+    $routes->post('periode/buka', 'Periode::buka');
 });
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {

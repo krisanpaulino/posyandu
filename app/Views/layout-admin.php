@@ -130,6 +130,12 @@
                                 <span>Data Posyandu</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('admin/periode') ?>" class="waves-effect">
+                                <i class="ri-time-line"></i>
+                                <span>Periode</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->

@@ -11,9 +11,11 @@ class Periode extends BaseController
     {
         $model = new PeriodeModel();
         $periode = $model->findAll();
+        $bulan = bulan();
         $data = [
             'title' => 'Periode',
-            'periode' => $periode
+            'periode' => $periode,
+            'bulan' => $bulan
         ];
         return view('periode', $data);
     }
@@ -37,5 +39,14 @@ class Periode extends BaseController
         $model->where('periode_id', $periode_id);
         $model->delete();
         return redirect()->to(previous_url())->with('success', 'Periode berhasil dihapus');
+    }
+
+    public function buka()
+    {
+        $periode_id = $this->request->getPost('periode_id');
+        $model = new PeriodeModel();
+        $model->where('periode_id', $periode_id);
+        $model->update($periode_id, ['periode_status' => 'buka']);
+        return redirect()->to(previous_url())->with('success', 'Periode berhasil dibuka!');
     }
 }
