@@ -66,5 +66,41 @@
             </div>
         </div>
     </div> <!-- end col -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Data Bayi Sudah Diperiksa</h4>
+                <p class="card-title-desc"></p>
+                </p>
+                <!-- end row -->
+                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Nama Balita</th>
+                            <th>JK</th>
+                            <th>Tgl Lahir</th>
+                            <th>Nama Orangtua</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php foreach ($sudahPeriksa as $b) : ?>
+                            <tr>
+                                <td><?= $b->balita_nama ?></td>
+                                <td><?= $b->balita_jk ?></td>
+                                <td><?= $b->balita_tgllahir ?></td>
+                                <td><?= $b->balita_orangtua ?></td>
+                                <td>
+                                    <a href="<?= base_url(session('user')->user_type . '/hasil/detail/' . $b->balita_id) ?>" class="badge bg-primary">Periksa</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end col -->
 </div>
 <?= $this->endSection(); ?>
