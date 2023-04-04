@@ -70,4 +70,19 @@ class BalitaModel extends Model
         $this->where('posyandu_id', $posyandu_id);
         return $this->find();
     }
+
+    public function belumPeriksa($periode_id, $posyandu_id = null)
+    {
+        $this->where("NOT EXISTS (SELECT * FROM hasilukur WHERE periode_id = '$periode_id' AND hasilukur.balita_id = balita.balita_id)", null, false);
+        if ($posyandu_id != null)
+            $this->where('balita.posyandu_id', $posyandu_id);
+        return $this->find();
+    }
+    public function sudahPeriksa($periode_id, $posyandu_id = null)
+    {
+        $this->where("EXISTS (SELECT * FROM hasilukur WHERE periode_id = '$periode_id' AND hasilukur.balita_id = balita.balita_id)", null, false);
+        if ($posyandu_id != null)
+            $this->where('balita.posyandu_id', $posyandu_id);
+        return $this->find();
+    }
 }
