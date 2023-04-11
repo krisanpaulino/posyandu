@@ -68,7 +68,7 @@
                 <div class="d-flex">
                     <div class="dropdown d-inline-block user-dropdown">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="<?= base_url('assets/img/petugas/' . petugas()->petugas_foto) ?> alt=" Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="<?= base_url('assets/images/profil/' . petugas()->petugas_foto) ?>" alt=" Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1"><?= petugas()->petugas_nama ?></span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"><?= petugas()->user_type ?></i>
                         </button>
@@ -118,6 +118,12 @@
                             <a href="<?= base_url('petugas/balita') ?>" class="waves-effect">
                                 <i class="ri-home-2-line"></i>
                                 <span>Data Balita</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('petugas/periksa') ?>" class="waves-effect">
+                                <i class="ri-clipboard-line"></i>
+                                <span>Periksa Balita</span>
                             </a>
                         </li>
                     </ul>

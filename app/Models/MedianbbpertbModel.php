@@ -4,20 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PeriodeModel extends Model
+class MedianbbpertbModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'periode';
-    protected $primaryKey       = 'periode_id';
+    protected $table            = 'medianbbpertb';
+    protected $primaryKey       = 'medianbbpertb_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'object';
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'periode_bulan',
-        'periode_tahun',
-        'periode_status',
+        'medianbbpertb_tb',
+        'medianbbpertb_l',
+        'medianbbpertb_t',
+        'medianbbpertb_plus1l',
+        'medianbbpertb_plus1p',
+        'medianbbpertb_min1l',
+        'medianbbpertb_min1p',
     ];
 
     // Dates
@@ -29,9 +33,13 @@ class PeriodeModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'periode_bulan' => 'required',
-        'periode_tahun' => 'required',
-        'periode_status' => 'required',
+        'medianbbpertb_tb' => 'required',
+        'medianbbpertb_l' => 'required',
+        'medianbbpertb_t' => 'required',
+        'medianbbpertb_plus1l' => 'required',
+        'medianbbpertb_plus1p' => 'required',
+        'medianbbpertb_min1l' => 'required',
+        'medianbbpertb_min1p' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -48,9 +56,9 @@ class PeriodeModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findBuka()
+    public function findMedian($tb)
     {
-        $this->where('periode_status', 'buka');
+        $this->where('medianbbpertb_tb', $tb);
         return $this->first();
     }
 }

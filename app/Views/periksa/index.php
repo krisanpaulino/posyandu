@@ -1,4 +1,4 @@
-<?= $this->extend('layout-admin'); ?>
+<?= $this->extend('layout-petugas'); ?>
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-12">
@@ -50,7 +50,7 @@
                     </thead>
 
                     <tbody>
-                        <?php foreach ($belumPeriksa as $b) : ?>
+                        <?php foreach ($belum_periksa as $b) : ?>
                             <tr>
                                 <td><?= $b->balita_nama ?></td>
                                 <td><?= $b->balita_jk ?></td>
@@ -86,14 +86,14 @@
                     </thead>
 
                     <tbody>
-                        <?php foreach ($sudahPeriksa as $b) : ?>
+                        <?php foreach ($sudah_periksa as $b) : ?>
                             <tr>
                                 <td><?= $b->balita_nama ?></td>
                                 <td><?= $b->balita_jk ?></td>
                                 <td><?= $b->balita_tgllahir ?></td>
                                 <td><?= $b->balita_orangtua ?></td>
                                 <td>
-                                    <a href="<?= base_url(session('user')->user_type . '/hasil/detail/' . $b->balita_id) ?>" class="badge bg-primary">Periksa</a>
+                                    <a href="<?= base_url(session('user')->user_type . '/hasil/detail/' . $b->balita_id) ?>" class="badge bg-primary">Detail</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

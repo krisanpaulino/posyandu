@@ -4,21 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PeriodeModel extends Model
+class MedianbbModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'periode';
-    protected $primaryKey       = 'periode_id';
+    protected $table            = 'medianbb';
+    protected $primaryKey       = 'medianbb_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'object';
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'periode_bulan',
-        'periode_tahun',
-        'periode_status',
-    ];
+    protected $allowedFields    = ['mediabb_umur', 'medianbb_l', 'medianbb_p', 'medianbb_plus1l', 'medianbb_min1l', 'medianbb_plus1p', 'medianbb_min1p'];
 
     // Dates
     protected $useTimestamps = false;
@@ -29,9 +25,9 @@ class PeriodeModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'periode_bulan' => 'required',
-        'periode_tahun' => 'required',
-        'periode_status' => 'required',
+        'medianbb_umur' => 'required',
+        'medianbb_l' => 'required',
+        'medianbb_p' => 'required'
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -48,9 +44,9 @@ class PeriodeModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findBuka()
+    public function findMedian($umur)
     {
-        $this->where('periode_status', 'buka');
+        $this->where('medianbb_umur', $umur);
         return $this->first();
     }
 }

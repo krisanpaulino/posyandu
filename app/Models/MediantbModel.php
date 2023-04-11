@@ -4,20 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PeriodeModel extends Model
+class MediantbModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'periode';
-    protected $primaryKey       = 'periode_id';
+    protected $table            = 'mediantb';
+    protected $primaryKey       = 'mediantb_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'object';
+    protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'periode_bulan',
-        'periode_tahun',
-        'periode_status',
+        'mediantb_umur',
+        'mediantb_l',
+        'mediantb_p',
+        'mediantb_plus1l',
+        'mediantb_plus1p',
+        'mediantb_min1l',
+        'mediantb_min1p',
     ];
 
     // Dates
@@ -29,9 +33,13 @@ class PeriodeModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'periode_bulan' => 'required',
-        'periode_tahun' => 'required',
-        'periode_status' => 'required',
+        'mediantb_umur' => 'required',
+        'mediantb_l' => 'required',
+        'mediantb_p' => 'required',
+        'mediantb_plus1l' => 'required',
+        'mediantb_plus1p' => 'required',
+        'mediantb_min1l' => 'required',
+        'mediantb_min1p' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -48,9 +56,9 @@ class PeriodeModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findBuka()
+    public function findMedian($umur)
     {
-        $this->where('periode_status', 'buka');
+        $this->where('mediantb_umur', $umur);
         return $this->first();
     }
 }
