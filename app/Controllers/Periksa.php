@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BalitaModel;
+use App\Models\HasilukurModel;
 use App\Models\MedianbbModel;
 use App\Models\MedianbbpertbModel;
 use App\Models\MedianimtModel;
@@ -61,10 +62,13 @@ class Periksa extends BaseController
         //Dapatkan Data Balita
         $model = new BalitaModel();
         $balita = $model->find($this->request->getPost('balita_id'));
+        // dd($balita);
         $jk = strtolower($balita->balita_jk);
         //Dapatkan Hasil Ukur dari Form
         $data = $this->request->getPost();
         $data['periode_id'] = $periode->periode_id;
+
+        $data['hasilukur_tgl'] = date('Y-m-d');
 
         //Hitung BMI
         $bmi = $data['hasilukur_bb'] / pow(($data['hasilukur_pbtb'] / 100), 2);
@@ -111,5 +115,15 @@ class Periksa extends BaseController
             $skor = ($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_min1' . $jk] - $medianimt['medianimt_' . $jk]);
         }
         $data['hasilukur_c4'] = $skor;
+
+        $model = new HasilukurModel();
+        if ($model->insert($data)) {
+            return redirect()->to(previous_url())
+                ->with('success', 'Data berhasil direkam!');
+        }
+        return redirect()->to(previous_url())
+            ->with('danger', 'Data gagal direkam. Periksa kembali!')
+            ->withInput()
+            ->with('errors', $model->errors());
     }
 }

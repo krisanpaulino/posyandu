@@ -64,6 +64,7 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
 
     $routes->get('periksa', 'Periksa::index');
     $routes->get('periksa/(:num)', 'Periksa::periksa/$1');
+    $routes->post('periksa/store', 'Periksa::store');
 });
 
 

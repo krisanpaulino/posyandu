@@ -94,7 +94,7 @@
 
                     <div class="form-group mb-4">
                         <label for="hasilukur_pbtb">Tinggi/Panjang Badan (Cm)</label>
-                        <input type="number" class="form-control <?= (isset(session('errors')['hasilukur_pbtb'])) ? 'is-invalid' : '' ?>" id="hasilukur_pbtb" name="hasilukur_pbtb" value="<?= old('hasilukur_pbtb') ?>">
+                        <input type="number" class="form-control <?= (isset(session('errors')['hasilukur_pbtb'])) ? 'is-invalid' : '' ?>" step="0.5" id="hasilukur_pbtb" name="hasilukur_pbtb" value="<?= old('hasilukur_pbtb') ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['hasilukur_pbtb'])) : ?>
                                 <?= session('errors')['hasilukur_pbtb'] ?>
