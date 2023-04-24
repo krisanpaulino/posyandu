@@ -49,9 +49,27 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('posyandu/tambah', 'Posyandu::store');
     $routes->post('posyandu/hapus', 'Posyandu::hapus');
 
+    $routes->get('/', 'Home::petugas');
+    $routes->get('balita', 'Balita::index');
+    $routes->get('balita/(:num)', 'Balita::detail/$1');
+    $routes->post('balita/tambah', 'Balita::store');
+    $routes->post('balita/update', 'Balita::update');
+    $routes->post('balita/hapus', 'Balita::delete');
+
     $routes->get('periode', 'Periode::index');
     $routes->post('periode/tambah', 'Periode::store');
     $routes->post('periode/buka', 'Periode::buka');
+
+    $routes->get('ambangbatas', 'Master::ambangbatas');
+    $routes->post('ambangbatas/tambah', 'Master::store_ambangbatas');
+    $routes->post('ambangbatas/update', 'Master::update_ambangbatas');
+    $routes->post('ambangbatas/hapus', 'Master::delete_ambangbatas');
+
+    $routes->get('kriteria', 'Master::kriteria');
+    $routes->post('kriteria/tambah', 'Master::store_kriteria');
+    $routes->post('kriteria/hapus', 'Master::delete_kriteria');
+
+    $routes->get('hasilukur', 'Antropometri::index');
 });
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
@@ -64,7 +82,15 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
 
     $routes->get('periksa', 'Periksa::index');
     $routes->get('periksa/(:num)', 'Periksa::periksa/$1');
+    $routes->get('periksa/detail/(:num)', 'Periksa::detail/$1');
     $routes->post('periksa/store', 'Periksa::store');
+
+    $routes->get('hasilukur', 'Antropometri::index');
+    $routes->get('hasilukur/(:num)', 'Antropometri::detailPetugas/$1');
+
+    $routes->get('profil', 'Profil::petugas');
+    $routes->post('update-profil', 'Profil::updatePetugas');
+    $routes->post('update-login', 'Profil::updateUser');
 });
 
 

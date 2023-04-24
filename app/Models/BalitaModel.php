@@ -67,7 +67,8 @@ class BalitaModel extends Model
 
     public function byPosyandu($posyandu_id)
     {
-        $this->where('posyandu_id', $posyandu_id);
+        $this->join('posyandu', 'posyandu.posyandu_id = balita.posyandu_id');
+        $this->where('balita.posyandu_id', $posyandu_id);
         return $this->find();
     }
 

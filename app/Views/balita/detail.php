@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_tgllahir">Tgl Lahir Balita</label>
-                        <input type="text" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy" class="form-control input-mask <?= (isset(session('errors')['balita_tgllahir'])) ? 'is-invalid' : '' ?>" id="balita_tgllahir" name="balita_tgllahir" value="<?= old('balita_tgllahir', $balita->balita_tgllahir) ?>">
+                        <input type="text" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy" class="form-control input-mask <?= (isset(session('errors')['balita_tgllahir'])) ? 'is-invalid' : '' ?>" id="balita_tgllahir" name="balita_tgllahir" value="<?= old('balita_tgllahir', date('d-m-Y', strtotime($balita->balita_tgllahir))) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_tgllahir'])) : ?>
                                 <?= session('errors')['balita_tgllahir'] ?>

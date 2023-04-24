@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AmbangbatasModel;
 use App\Models\PetugasModel;
 
 function petugas()
@@ -109,4 +110,17 @@ function konversiBulan($angka)
             break;
     }
     return $bulan;
+}
+
+function getStatus($index, $skor)
+{
+    $model = new AmbangbatasModel();
+    $result = $model->bySkor($index, $skor);
+    return $result->ambangbatas_status;
+}
+function getambang($index, $skor)
+{
+    $model = new AmbangbatasModel();
+    $result = $model->bySkor($index, $skor);
+    return $result;
 }

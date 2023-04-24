@@ -4,24 +4,22 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MedianimtModel extends Model
+class AmbangbatasModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'medianimt';
-    protected $primaryKey       = 'medianimt_id';
+    protected $table            = 'ambangbatas';
+    protected $primaryKey       = 'ambangbatas_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'medianimt_umur',
-        'medianimt_l',
-        'medianimt_p',
-        'medianimt_plus1l',
-        'medianimt_plus1p',
-        'medianimt_min1l',
-        'medianimt_min1p',
+        'ambangbatas_index',
+        'ambangbatas_status',
+        'ambangbatas_skormin',
+        'ambangbatas_skormax',
+        'ambangbatas_bobotkriteria',
     ];
 
     // Dates
@@ -33,13 +31,11 @@ class MedianimtModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'medianimt_umur' => 'required',
-        'medianimt_l' => 'required',
-        'medianimt_p' => 'required',
-        'medianimt_plus1l' => 'required',
-        'medianimt_plus1p' => 'required',
-        'medianimt_min1l' => 'required',
-        'medianimt_min1p' => 'required',
+        'ambangbatas_index' => 'required',
+        'ambangbatas_status' => 'required',
+        'ambangbatas_skormin' => 'required',
+        'ambangbatas_skormax' => 'required',
+        'ambangbatas_bobotkriteria' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -56,10 +52,11 @@ class MedianimtModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findMedian($umur, $posisi)
+    public function bySkor($index, $skor)
     {
-        $this->where('medianimt_umur', $umur);
-        $this->where('posisi', $posisi);
+        $this->where('ambangbatas_index', $index);
+        $this->where('ambangbatas_skormin <=', $skor, true);
+        $this->where('ambangbatas_skormax >=', $skor, true);
         return $this->first();
     }
 }

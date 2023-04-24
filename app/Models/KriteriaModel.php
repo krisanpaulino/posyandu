@@ -4,24 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MedianimtModel extends Model
+class KriteriaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'medianimt';
-    protected $primaryKey       = 'medianimt_id';
+    protected $table            = 'kriteria';
+    protected $primaryKey       = 'kriteria_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
-    protected $returnType       = 'array';
+    protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'medianimt_umur',
-        'medianimt_l',
-        'medianimt_p',
-        'medianimt_plus1l',
-        'medianimt_plus1p',
-        'medianimt_min1l',
-        'medianimt_min1p',
+        'kriteria_nama',
+        'kriteria_bobot',
+        'kriteria_detail'
     ];
 
     // Dates
@@ -33,13 +29,9 @@ class MedianimtModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'medianimt_umur' => 'required',
-        'medianimt_l' => 'required',
-        'medianimt_p' => 'required',
-        'medianimt_plus1l' => 'required',
-        'medianimt_plus1p' => 'required',
-        'medianimt_min1l' => 'required',
-        'medianimt_min1p' => 'required',
+        'kriteria_nama' => 'required',
+        'kriteria_bobot' => 'required',
+        'kriteria_detail' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -56,10 +48,9 @@ class MedianimtModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findMedian($umur, $posisi)
+    public function findKriteria($nama)
     {
-        $this->where('medianimt_umur', $umur);
-        $this->where('posisi', $posisi);
+        $this->where('kriteria_nama', $nama);
         return $this->first();
     }
 }

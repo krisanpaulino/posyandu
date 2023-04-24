@@ -8,7 +8,7 @@ class AddsdtoMedianimt extends Migration
 {
     public function up()
     {
-        $this->forge->addColumn('mediantb', [
+        $this->forge->addColumn('medianimt', [
             'medianimt_plus1l' => [
                 'type' => 'FLOAT'
             ],

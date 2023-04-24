@@ -39,21 +39,10 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="<?= base_url() ?>/assets/images/logo-sm.png" alt="logo-sm" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="<?= base_url() ?>/assets/images/logo-dark.png" alt="logo-dark" height="20">
-                            </span>
-                        </a>
 
-                        <a href="index.html" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="<?= base_url() ?>/assets/images/logo-sm.png" alt="logo-sm-light" height="22">
-                            </span>
+                        <a href="<?= base_url() ?>" class="logo logo-light">
                             <span class="logo-lg">
-                                <img src="<?= base_url() ?>/assets/images/logo-light.png" alt="logo-light" height="20">
+                                POSYANDU
                             </span>
                         </a>
                     </div>
@@ -94,10 +83,7 @@
                 <!-- User details -->
                 <div class="user-profile text-center mt-3">
                     <div class="">
-                        <img src="<?= base_url() ?>/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="font-size-16 mb-1"><?= petugas()->petugas_nama ?></h4>
+                        <img src="<?= base_url() ?>/assets/images/logo-dark.png" alt="" height="80">
                     </div>
                 </div>
 
@@ -116,7 +102,7 @@
 
                         <li>
                             <a href="<?= base_url('petugas/balita') ?>" class="waves-effect">
-                                <i class="ri-home-2-line"></i>
+                                <i class="ri-user-heart-line"></i>
                                 <span>Data Balita</span>
                             </a>
                         </li>
@@ -124,6 +110,12 @@
                             <a href="<?= base_url('petugas/periksa') ?>" class="waves-effect">
                                 <i class="ri-clipboard-line"></i>
                                 <span>Periksa Balita</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('petugas/hasilukur') ?>" class="waves-effect">
+                                <i class="ri-honour-line"></i>
+                                <span>Antropometri</span>
                             </a>
                         </li>
                     </ul>

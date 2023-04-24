@@ -44,6 +44,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
+                            <th>Posyandu</th>
                             <th>Nama Balita</th>
                             <th>JK</th>
                             <th>Tgl Lahir</th>
@@ -55,6 +56,7 @@
                     <tbody>
                         <?php foreach ($balita as $b) : ?>
                             <tr>
+                                <td><?= $b->posyandu_nama ?></td>
                                 <td><?= $b->balita_nama ?></td>
                                 <td><?= $b->balita_jk ?></td>
                                 <td><?= $b->balita_tgllahir ?></td>

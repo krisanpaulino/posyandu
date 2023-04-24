@@ -4,24 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MedianimtModel extends Model
+class MedianpbModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'medianimt';
-    protected $primaryKey       = 'medianimt_id';
+    protected $table            = 'medianpb';
+    protected $primaryKey       = 'medianpb_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'medianimt_umur',
-        'medianimt_l',
-        'medianimt_p',
-        'medianimt_plus1l',
-        'medianimt_plus1p',
-        'medianimt_min1l',
-        'medianimt_min1p',
+        'medianpb_umur',
+        'medianpb_l',
+        'medianpb_p',
+        'medianpb_plus1l',
+        'medianpb_plus1p',
+        'medianpb_min1l',
+        'medianpb_min1p',
     ];
 
     // Dates
@@ -33,13 +33,13 @@ class MedianimtModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'medianimt_umur' => 'required',
-        'medianimt_l' => 'required',
-        'medianimt_p' => 'required',
-        'medianimt_plus1l' => 'required',
-        'medianimt_plus1p' => 'required',
-        'medianimt_min1l' => 'required',
-        'medianimt_min1p' => 'required',
+        'medianpb_umur' => 'required',
+        'medianpb_l' => 'required',
+        'medianpb_p' => 'required',
+        'medianpb_plus1l' => 'required',
+        'medianpb_plus1p' => 'required',
+        'medianpb_min1l' => 'required',
+        'medianpb_min1p' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -56,10 +56,9 @@ class MedianimtModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findMedian($umur, $posisi)
+    public function findMedian($umur)
     {
-        $this->where('medianimt_umur', $umur);
-        $this->where('posisi', $posisi);
+        $this->where('medianpb_umur', $umur);
         return $this->first();
     }
 }

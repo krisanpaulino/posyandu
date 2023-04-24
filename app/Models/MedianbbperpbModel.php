@@ -4,24 +4,24 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MedianimtModel extends Model
+class MedianbbperpbModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'medianimt';
-    protected $primaryKey       = 'medianimt_id';
+    protected $table            = 'medianbbperpb';
+    protected $primaryKey       = 'medianbbperpb_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'medianimt_umur',
-        'medianimt_l',
-        'medianimt_p',
-        'medianimt_plus1l',
-        'medianimt_plus1p',
-        'medianimt_min1l',
-        'medianimt_min1p',
+        'medianbbperpb_pb',
+        'medianbbperpb_l',
+        'medianbbperpb_t',
+        'medianbbperpb_plus1l',
+        'medianbbperpb_plus1p',
+        'medianbbperpb_min1l',
+        'medianbbperpb_min1p',
     ];
 
     // Dates
@@ -33,13 +33,13 @@ class MedianimtModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'medianimt_umur' => 'required',
-        'medianimt_l' => 'required',
-        'medianimt_p' => 'required',
-        'medianimt_plus1l' => 'required',
-        'medianimt_plus1p' => 'required',
-        'medianimt_min1l' => 'required',
-        'medianimt_min1p' => 'required',
+        'medianbbperpb_pb' => 'required',
+        'medianbbperpb_l' => 'required',
+        'medianbbperpb_t' => 'required',
+        'medianbbperpb_plus1l' => 'required',
+        'medianbbperpb_plus1p' => 'required',
+        'medianbbperpb_min1l' => 'required',
+        'medianbbperpb_min1p' => 'required',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -55,11 +55,9 @@ class MedianimtModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function findMedian($umur, $posisi)
+    public function findMedian($pb)
     {
-        $this->where('medianimt_umur', $umur);
-        $this->where('posisi', $posisi);
+        $this->where('medianbbperpb_pb', $pb);
         return $this->first();
     }
 }

@@ -39,21 +39,9 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
-                            <span class="logo-sm">
-                                <img src="<?= base_url() ?>/assets/images/logo-sm.png" alt="logo-sm" height="22">
-                            </span>
+                        <a href="<?= base_url() ?>" class="logo logo-light">
                             <span class="logo-lg">
-                                <img src="<?= base_url() ?>/assets/images/logo-dark.png" alt="logo-dark" height="20">
-                            </span>
-                        </a>
-
-                        <a href="index.html" class="logo logo-light">
-                            <span class="logo-sm">
-                                <img src="<?= base_url() ?>/assets/images/logo-sm.png" alt="logo-sm-light" height="22">
-                            </span>
-                            <span class="logo-lg">
-                                <img src="<?= base_url() ?>/assets/images/logo-light.png" alt="logo-light" height="20">
+                                POSYANDU
                             </span>
                         </a>
                     </div>
@@ -68,8 +56,8 @@
                 <div class="d-flex">
                     <div class="dropdown d-inline-block user-dropdown">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="<?= base_url() ?>/assets/images/users/avatar-1.jpg" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1">Julia</span>
+                            <img class="rounded-circle header-profile-user" src="<?= base_url() ?>/assets/images/logo-dark.png" alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ms-1">Admin</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -94,10 +82,7 @@
                 <!-- User details -->
                 <div class="user-profile text-center mt-3">
                     <div class="">
-                        <img src="<?= base_url() ?>/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="font-size-16 mb-1">Julia Hudda</h4>
+                        <img src="<?= base_url() ?>/assets/images/logo-dark.png" alt="" height="80">
                     </div>
                 </div>
 
@@ -108,7 +93,7 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="index.html" class="waves-effect">
+                            <a href="<?= base_url() ?>" class="waves-effect">
                                 <i class="ri-dashboard-line"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -131,9 +116,28 @@
                             </a>
                         </li>
                         <li>
+                            <a href="<?= base_url('admin/balita') ?>" class="waves-effect">
+                                <i class="ri-user-heart-line"></i>
+                                <span>Data Balita</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('admin/periode') ?>" class="waves-effect">
                                 <i class="ri-time-line"></i>
                                 <span>Periode</span>
+                            </a>
+                        </li>
+                        <li class="menu-title">SAW</li>
+                        <li>
+                            <a href="<?= base_url('admin/ambangbatas') ?>" class="waves-effect">
+                                <i class="ri-honour-line"></i>
+                                <span>Ambang Batas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/kriteria') ?>" class="waves-effect">
+                                <i class="ri-honour-line"></i>
+                                <span>Kriteria</span>
                             </a>
                         </li>
                     </ul>

@@ -7,6 +7,7 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/hasiukur') ?>">Antropometri</a></li>
                     <li class="breadcrumb-item active"><?= $title ?></li>
                 </ol>
             </div>
@@ -33,66 +34,39 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Data Bayi Belum Diperiksa</h4>
+                <h4 class="card-title">Hasil Ukur <?= petugas()->posyandu_nama ?></h4>
                 <p class="card-title-desc"></p>
                 </p>
                 <!-- end row -->
+                <div class="d-flex justify-content-end mb-4">
+                    <form action="<?= base_url(session('user')->user_type . '/antropometri/hitung') ?>" method="post">
+                        <input type="hidden" name="periode_id" value="<?= $periode->periode_id ?>">
+                        <input type="hidden" name="posyandu_id" value="<?= $posyandu->posyandu_id ?>">
+                        <button type="submit" class="btn btn-primary"><i class="ri-calculator-line"></i> Hitung</button>
+                    </form>
+                </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
                             <th>Nama Balita</th>
                             <th>JK</th>
-                            <th>Tgl Lahir</th>
-                            <th>Nama Orangtua</th>
+                            <th>Umur</th>
+                            <th>Skor SAW</th>
+                            <th>Status Gizi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <?php foreach ($belum_periksa as $b) : ?>
+                        <?php foreach ($hasilukur as $b) : ?>
                             <tr>
                                 <td><?= $b->balita_nama ?></td>
                                 <td><?= $b->balita_jk ?></td>
-                                <td><?= $b->balita_tgllahir ?></td>
-                                <td><?= $b->balita_orangtua ?></td>
+                                <td><?= $b->balita_umur ?></td>
+                                <td><?= $b->hasilukur_skor ?></td>
+                                <td><?= $b->hasilukur_status ?></td>
                                 <td>
-                                    <a href="<?= base_url(session('user')->user_type . '/periksa/' . $b->balita_id) ?>" class="badge bg-primary">Periksa</a>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> <!-- end col -->
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-
-                <h4 class="card-title">Data Bayi Sudah Diperiksa</h4>
-                <p class="card-title-desc"></p>
-                </p>
-                <!-- end row -->
-                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Nama Balita</th>
-                            <th>JK</th>
-                            <th>Tgl Lahir</th>
-                            <th>Nama Orangtua</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($sudah_periksa as $b) : ?>
-                            <tr>
-                                <td><?= $b->balita_nama ?></td>
-                                <td><?= $b->balita_jk ?></td>
-                                <td><?= $b->balita_tgllahir ?></td>
-                                <td><?= $b->balita_orangtua ?></td>
-                                <td>
-                                    <a href="<?= base_url(session('user')->user_type . '/periksa/detail/' . $b->balita_id) ?>" class="badge bg-primary">Detail</a>
+                                    <a href="<?= base_url(session('user')->user_type . '/antropometri/' . $periode->periode_id . '/detail/' . $b->balita_id) ?>" class="badge bg-info">Detail</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
