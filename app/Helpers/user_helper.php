@@ -124,3 +124,16 @@ function getambang($index, $skor)
     $result = $model->bySkor($index, $skor);
     return $result;
 }
+
+function konversiTB($tb)
+{
+    $round = floor($tb);
+    if ($round != $tb) {
+        $interval = $tb - $round;
+        if ($interval >= 0.5)
+            $tb = $round + 0.5;
+        else
+            $tb = $round;
+    }
+    return $tb;
+}

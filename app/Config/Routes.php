@@ -70,6 +70,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('kriteria/hapus', 'Master::delete_kriteria');
 
     $routes->get('hasilukur', 'Antropometri::index');
+    $routes->post('antropometri/hitung', 'Antropometri::hitung');
 });
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
@@ -86,6 +87,7 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->post('periksa/store', 'Periksa::store');
 
     $routes->get('hasilukur', 'Antropometri::index');
+    $routes->post('antropometri/hitung', 'Antropometri::hitung');
     $routes->get('hasilukur/(:num)', 'Antropometri::detailPetugas/$1');
 
     $routes->get('profil', 'Profil::petugas');

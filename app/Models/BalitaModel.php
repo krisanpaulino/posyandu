@@ -75,6 +75,7 @@ class BalitaModel extends Model
     public function belumPeriksa($periode_id, $posyandu_id = null)
     {
         $this->where("NOT EXISTS (SELECT * FROM hasilukur WHERE periode_id = '$periode_id' AND hasilukur.balita_id = balita.balita_id)", null, false);
+        $this->where('balita_umur <=', 60, true);
         if ($posyandu_id != null)
             $this->where('balita.posyandu_id', $posyandu_id);
         return $this->find();

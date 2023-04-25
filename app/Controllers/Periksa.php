@@ -82,7 +82,7 @@ class Periksa extends BaseController
         $medianbb = $model->findMedian($balita->balita_umur);
 
         //Hitung z-score
-        if ($data['hasilukur_bb'] < $medianbb) {
+        if ($data['hasilukur_bb'] < $medianbb['medianbb_' . $jk]) {
             $skor = ($data['hasilukur_bb'] - $medianbb['medianbb_' . $jk]) / ($medianbb['medianbb_' . $jk] - $medianbb['medianbb_min1' . $jk]);
         } else {
             $skor = ($data['hasilukur_bb'] - $medianbb['medianbb_' . $jk]) / ($medianbb['medianbb_plus1' . $jk] - $medianbb['medianbb_' . $jk]);
@@ -100,7 +100,7 @@ class Periksa extends BaseController
             $field = 'medianpb_';
         }
         $mediantb = $model->findMedian($balita->balita_umur);
-        if ($data['hasilukur_pbtb'] < $mediantb) {
+        if ($data['hasilukur_pbtb'] < $mediantb[$field . $jk]) {
             $skor = ($data['hasilukur_pbtb'] - $mediantb[$field . $jk]) / ($mediantb[$field . $jk] - $mediantb[$field . 'min1' . $jk]);
         } else {
             $skor = ($data['hasilukur_pbtb'] - $mediantb[$field . $jk]) / ($mediantb[$field . 'plus1' . $jk] - $mediantb[$field . $jk]);
@@ -117,8 +117,9 @@ class Periksa extends BaseController
             $model = new MedianbbperpbModel();
             $field = 'medianbbperpb_';
         }
-        $medianbbpertb = $model->findMedian($data['hasilukur_pbtb']);
-        if ($data['hasilukur_bb'] < $medianbbpertb) {
+        $medianbbpertb = $model->findMedian(konversiTB($data['hasilukur_pbtb']));
+        // dd(konversiTB($data['hasilukur_pbtb']));
+        if ($data['hasilukur_bb'] < $medianbbpertb[$field . $jk]) {
             $skor = ($data['hasilukur_bb'] - $medianbbpertb[$field . $jk]) / ($medianbbpertb[$field . $jk] - $medianbbpertb[$field . 'min1' . $jk]);
         } else {
             $skor = ($data['hasilukur_bb'] - $medianbbpertb[$field . $jk]) / ($medianbbpertb[$field . 'plus1' . $jk] - $medianbbpertb[$field . $jk]);
@@ -130,12 +131,16 @@ class Periksa extends BaseController
         /* Hitung Z-Score IMT/U */
         $model = new MedianimtModel();
         $medianimt = $model->findMedian($balita->balita_umur, $data['hasilukur_posisi']);
-        if ($bmi < $medianimt) {
-            $skor = ($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_' . $jk] - $medianimt['medianimt_min1' . $jk]);
+        // dd($median)
+        if ($bmi < $medianimt['medianimt_' . $jk]) {
+            $data['hasilukur_c4'] = ($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_' . $jk] - $medianimt['medianimt_min1' . $jk]);
+            // dd('here');
         } else {
-            $skor = ($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_plus1' . $jk] - $medianimt['medianimt_' . $jk]);
+            $data['hasilukur_c4'] = ($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_plus1' . $jk] - $medianimt['medianimt_' . $jk]);
         }
-        $data['hasilukur_c4'] = $skor;
+        // dd($skorimt);
+        // dd(($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_plus1' . $jk] - $medianimt['medianimt_' . $jk]));
+        // $data['hasilukur_c4'] = $skor;
         //DAPATKAN BOBOT
         $data['hasilukur_c4bobot'] = getambang('IMT/U', $data['hasilukur_c4'])->ambangbatas_bobotkriteria;
 

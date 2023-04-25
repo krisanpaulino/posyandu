@@ -93,7 +93,7 @@ class HasilukurModel extends Model
 
     public function findMax($field, $posyandu_id, $periode_id)
     {
-        $this->select($field . 'as bobot');
+        $this->select($field . ' as bobot');
         $this->join('balita', 'balita.balita_id = hasilukur.balita_id');
         $this->where('balita.posyandu_id', $posyandu_id);
         $this->where('hasilukur.periode_id', $periode_id);

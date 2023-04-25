@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BalitaModel;
 use App\Models\PeriodeModel;
 
 class Periode extends BaseController
@@ -47,6 +48,11 @@ class Periode extends BaseController
         $model = new PeriodeModel();
         $model->where('periode_id', $periode_id);
         $model->update($periode_id, ['periode_status' => 'buka']);
+
+        $model = new BalitaModel();
+        $model->where('balita_umur <=', 60, true);
+        $model->set('balita_umur', '`balita_umur` + 1', FALSE);
+        $model->update();
         return redirect()->to(previous_url())->with('success', 'Periode berhasil dibuka!');
     }
 }

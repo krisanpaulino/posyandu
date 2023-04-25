@@ -55,18 +55,17 @@ class Antropometri extends BaseController
         $maxc2 = $model->findMax('hasilukur_c2bobot', $posyandu_id, $periode_id);
         $maxc3 = $model->findMax('hasilukur_c3bobot', $posyandu_id, $periode_id);
         $maxc4 = $model->findMax('hasilukur_c4bobot', $posyandu_id, $periode_id);
-
+        // dd($maxc1);
         //Dapatkan semua hasil ukur
         $hasilukur = $model->findHasil($posyandu_id, $periode_id);
-
+        // dd($hasilukur);
         $kmodel = new KriteriaModel(); //Model Kriteria
         foreach ($hasilukur as $i => $hasil) {
             $skor = 0;
-
-            $skor += $hasilukur->hasiukur_c1bobot / $maxc1 * $kmodel->findKriteria('c1')->kriteria_bobot;
-            $skor += $hasilukur->hasiukur_c2bobot / $maxc2 * $kmodel->findKriteria('c2')->kriteria_bobot;
-            $skor += $hasilukur->hasiukur_c3bobot / $maxc3 * $kmodel->findKriteria('c3')->kriteria_bobot;
-            $skor += $hasilukur->hasiukur_c4bobot / $maxc4 * $kmodel->findKriteria('c4')->kriteria_bobot;
+            $skor += $hasil->hasilukur_c1bobot / $maxc1 * $kmodel->findKriteria('c1')->kriteria_bobot;
+            $skor += $hasil->hasilukur_c2bobot / $maxc2 * $kmodel->findKriteria('c2')->kriteria_bobot;
+            $skor += $hasil->hasilukur_c3bobot / $maxc3 * $kmodel->findKriteria('c3')->kriteria_bobot;
+            $skor += $hasil->hasilukur_c4bobot / $maxc4 * $kmodel->findKriteria('c4')->kriteria_bobot;
 
             $data['hasilukur_skor'] = $skor;
 
