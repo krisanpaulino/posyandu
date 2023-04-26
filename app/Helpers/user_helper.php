@@ -137,3 +137,16 @@ function konversiTB($tb)
     }
     return $tb;
 }
+
+function statusSAW($nilai)
+{
+    if ($nilai >= 0 && $nilai <= 0.49) {
+        return 'Gizi Buruk';
+    } elseif ($nilai >= 0.50 && $nilai <= 0.74) {
+        return 'Gizi Kurang';
+    } elseif ($nilai >= 0.75 && $nilai <= 0.79) {
+        return 'Gizi Lebih';
+    } else {
+        return 'Gizi Baik';
+    }
+}

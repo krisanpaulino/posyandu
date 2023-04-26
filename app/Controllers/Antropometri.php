@@ -68,6 +68,7 @@ class Antropometri extends BaseController
             $skor += $hasil->hasilukur_c4bobot / $maxc4 * $kmodel->findKriteria('c4')->kriteria_bobot;
 
             $data['hasilukur_skor'] = $skor;
+            $data['hasilukur_status'] = statusSAW($skor);
 
             $model->where('hasilukur_id', $hasil->hasilukur_id);
             $model->update($hasil->hasilukur_id, $data);
