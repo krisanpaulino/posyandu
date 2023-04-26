@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                         <th>Berat Badan</th>
-                        <td><?= $detail->hasilukur_bb ?> Bulan</td>
+                        <td><?= $detail->hasilukur_bb ?> kg</td>
                     </tr>
                     <tr>
                         <th>Tinggi/Panjang Badan</th>
