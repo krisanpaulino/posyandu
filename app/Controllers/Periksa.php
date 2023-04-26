@@ -100,6 +100,7 @@ class Periksa extends BaseController
             $field = 'medianpb_';
         }
         $mediantb = $model->findMedian($balita->balita_umur);
+        // dd($mediantb);
         if ($data['hasilukur_pbtb'] < $mediantb[$field . $jk]) {
             $skor = ($data['hasilukur_pbtb'] - $mediantb[$field . $jk]) / ($mediantb[$field . $jk] - $mediantb[$field . 'min1' . $jk]);
         } else {

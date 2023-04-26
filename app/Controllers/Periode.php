@@ -55,4 +55,13 @@ class Periode extends BaseController
         $model->update();
         return redirect()->to(previous_url())->with('success', 'Periode berhasil dibuka!');
     }
+    public function selesai()
+    {
+        $periode_id = $this->request->getPost('periode_id');
+        $model = new PeriodeModel();
+        $model->where('periode_id', $periode_id);
+        $model->update($periode_id, ['periode_status' => 'selesai']);
+
+        return redirect()->to(previous_url())->with('success', 'Periode berhasil ditutup!');
+    }
 }

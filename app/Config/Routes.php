@@ -59,6 +59,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('periode', 'Periode::index');
     $routes->post('periode/tambah', 'Periode::store');
     $routes->post('periode/buka', 'Periode::buka');
+    $routes->post('periode/selesai', 'Periode::selesai');
 
     $routes->get('ambangbatas', 'Master::ambangbatas');
     $routes->post('ambangbatas/tambah', 'Master::store_ambangbatas');
