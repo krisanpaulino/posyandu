@@ -1,16 +1,27 @@
-<?= $this->extend('layout-petugas'); ?>
+<?= $this->extend('layout-' . session('user')->user_type); ?>
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0"><?= $title ?></h4>
 
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/hasiukur') ?>">Antropometri</a></li>
-                    <li class="breadcrumb-item active"><?= $title ?></li>
-                </ol>
-            </div>
+            <?php if (session('user')->user_type == 'petugas') : ?>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/hasilukur') ?>">Antropometri</a></li>
+                        <li class="breadcrumb-item active"><?= $title ?></li>
+                    </ol>
+                </div>
+            <?php endif ?>
+            <?php if (session('user')->user_type == 'admin') : ?>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/hasilukur') ?>">Antropometri</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url(session('user')->user_type . '/hasilukur/' . $periode->periode_id) ?>"><?= 'Antropometri Periode ' . konversiBulan($periode->periode_bulan) . ' ' . $periode->periode_tahun ?> </a></li>
+                        <li class="breadcrumb-item active"><?= $title ?></li>
+                    </ol>
+                </div>
+            <?php endif ?>
 
         </div>
     </div>
@@ -34,7 +45,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Hasil Ukur <?= petugas()->posyandu_nama ?></h4>
+                <h4 class="card-title">Hasil Ukur <?= $posyandu->posyandu_nama ?></h4>
                 <p class="card-title-desc"></p>
                 </p>
                 <!-- end row -->
@@ -66,7 +77,7 @@
                                 <td><?= $b->hasilukur_skor ?></td>
                                 <td><?= $b->hasilukur_status ?></td>
                                 <td>
-                                    <a href="<?= base_url(session('user')->user_type . '/antropometri/' . $periode->periode_id . '/detail/' . $b->balita_id) ?>" class="badge bg-info">Detail</a>
+                                    <a href="<?= base_url(session('user')->user_type . '/hasilukur/' . $periode->periode_id . '/detail/' . $b->balita_id) ?>" class="badge bg-info">Detail</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

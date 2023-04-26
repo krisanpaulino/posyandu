@@ -72,6 +72,9 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
 
     $routes->get('hasilukur', 'Antropometri::index');
     $routes->post('antropometri/hitung', 'Antropometri::hitung');
+    $routes->get('hasilukur/(:num)', 'Antropometri::posyandu/$1');
+    $routes->get('hasilukur/(:num)/posyandu/(:num)', 'Antropometri::detailAdmin/$1/$2');
+    $routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkur/$1/$2');
 });
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
@@ -94,6 +97,8 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->get('profil', 'Profil::petugas');
     $routes->post('update-profil', 'Profil::updatePetugas');
     $routes->post('update-login', 'Profil::updateUser');
+
+    $routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkur/$1/$2');
 });
 
 

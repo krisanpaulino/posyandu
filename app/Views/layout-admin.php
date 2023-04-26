@@ -140,6 +140,13 @@
                                 <span>Kriteria</span>
                             </a>
                         </li>
+                        <li class="menu-title">Pengukuran</li>
+                        <li>
+                            <a href="<?= base_url('admin/hasilukur') ?>" class="waves-effect">
+                                <i class="ri-honour-line"></i>
+                                <span>Hasil Ukur</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->

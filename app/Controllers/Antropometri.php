@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BalitaModel;
 use App\Models\HasilukurModel;
 use App\Models\KriteriaModel;
 use App\Models\PeriodeModel;
@@ -19,13 +20,48 @@ class Antropometri extends BaseController
             'title' => 'Antropometri',
             'periode' => $periode
         ];
+        return view('antropometri/index-' . session('user')->user_type, $data);
+    }
 
-        return view('antropometri/index', $data);
+    public function posyandu($periode_id)
+    {
+        $model = new PosyanduModel();
+        $posyandu = $model->findAll();
+
+        $model = new PeriodeModel();
+        $periode = $model->find($periode_id);
+        $data = [
+            'title' => 'Antropometri Periode ' . konversiBulan($periode->periode_bulan) . ' ' . $periode->periode_tahun,
+            'posyandu' => $posyandu,
+            'periode' => $periode
+        ];
+
+        return view('antropometri/posyandu', $data);
     }
 
     public function detailPetugas($periode_id)
     {
         $posyandu_id = session('petugas')->posyandu_id;
+        $model = new PosyanduModel();
+        $posyandu = $model->find($posyandu_id);
+
+        $model = new PeriodeModel();
+        $periode = $model->find($periode_id);
+
+        $model = new HasilukurModel();
+        $hasilukur = $model->findHasil($posyandu_id, $periode_id);
+        // dd($hasilukur);
+        $data = [
+            'title' => 'Hasil Ukur',
+            'posyandu' => $posyandu,
+            'periode' => $periode,
+            'hasilukur' => $hasilukur
+        ];
+
+        return view('antropometri/detail', $data);
+    }
+    public function detailAdmin($periode_id, $posyandu_id)
+    {
         $model = new PosyanduModel();
         $posyandu = $model->find($posyandu_id);
 
@@ -75,5 +111,29 @@ class Antropometri extends BaseController
         }
 
         return redirect()->to(previous_url())->with('success', 'Berhasil dihitung');
+    }
+    public function detailUkur($periode_id, $balita_id)
+    {
+        $model = new PeriodeModel();
+        $periode = $model->find($periode_id);
+        // dd($periode);
+        $model = new HasilukurModel();
+        $detail = $model->findDetail($balita_id, $periode->periode_id);
+
+        $model = new BalitaModel();
+        $balita = $model->findBalita($balita_id);
+
+        $model = new PosyanduModel();
+        $posyandu = $model->find($balita->posyandu_id);
+        $data = [
+            'title' => 'Detail Ukur Balita',
+            'periode' => $periode,
+            'balita' => $balita,
+            'detail' => $detail,
+            'posyandu' => $posyandu
+        ];
+        // dd($detail);
+
+        return view('antropometri/detail-ukur', $data);
     }
 }
