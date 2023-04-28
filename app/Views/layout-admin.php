@@ -225,9 +225,16 @@
 
     <!-- form mask -->
     <script src="<?= base_url() ?>assets/libs/inputmask/jquery.inputmask.min.js"></script>
+    <script src="<?= base_url() ?>assets/libs/ckeditor/ckeditor.js"></script>
 
     <!-- form mask init -->
     <script src="<?= base_url() ?>assets/js/pages/form-mask.init.js"></script>
+
+    <script>
+        CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
+        CKEDITOR.replace('editor3');
+    </script>
 
     <script src="<?= base_url() ?>/assets/js/app.js"></script>
 

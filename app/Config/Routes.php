@@ -70,6 +70,12 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('kriteria/tambah', 'Master::store_kriteria');
     $routes->post('kriteria/hapus', 'Master::delete_kriteria');
 
+    $routes->get('statusgizi', 'Master::statusgizi');
+    $routes->get('statusgizi/(:num)', 'Master::edit_statusgizi/$1');
+    $routes->post('statusgizi/tambah', 'Master::store_statusgizi');
+    $routes->post('statusgizi/hapus', 'Master::delete_statusgizi');
+    $routes->post('statusgizi/update', 'Master::update_statusgizi');
+
     $routes->get('hasilukur', 'Antropometri::index');
     $routes->post('antropometri/hitung', 'Antropometri::hitung');
     $routes->get('hasilukur/(:num)', 'Antropometri::posyandu/$1');

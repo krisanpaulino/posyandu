@@ -88,6 +88,7 @@ class HasilukurModel extends Model
         $this->join('balita', 'balita.balita_id = hasilukur.balita_id');
         $this->where('balita.posyandu_id', $posyandu_id);
         $this->where('hasilukur.periode_id', $periode_id);
+        $this->join('statusgizi', 'statusgizi.statusgizi_id = hasilukur.hasilukur_status', 'left');
         return $this->find();
     }
 

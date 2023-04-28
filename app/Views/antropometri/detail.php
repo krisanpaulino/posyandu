@@ -75,7 +75,7 @@
                                 <td><?= $b->balita_jk ?></td>
                                 <td><?= $b->balita_umur ?></td>
                                 <td><?= $b->hasilukur_skor ?></td>
-                                <td><?= $b->hasilukur_status ?></td>
+                                <td><?= $b->statusgizi_nama ?></td>
                                 <td>
                                     <a href="<?= base_url(session('user')->user_type . '/hasilukur/' . $periode->periode_id . '/detail/' . $b->balita_id) ?>" class="badge bg-info">Detail</a>
                                 </td>
