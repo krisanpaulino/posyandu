@@ -140,6 +140,12 @@
                                 <span>Kriteria</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('admin/statusgizi') ?>" class="waves-effect">
+                                <i class="ri-honour-line"></i>
+                                <span>Status Gizi</span>
+                            </a>
+                        </li>
                         <li class="menu-title">Pengukuran</li>
                         <li>
                             <a href="<?= base_url('admin/hasilukur') ?>" class="waves-effect">

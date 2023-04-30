@@ -11,7 +11,8 @@ class Home extends BaseController
         }
 
         // dd(session());
-        return redirect()->to('auth');
+        $data['title'] = 'Posyandu';
+        return view('dashboards/umum', $data);
     }
     public function admin()
     {
@@ -25,5 +26,11 @@ class Home extends BaseController
         $data['title'] = 'Dashboard';
 
         return view('dashboards/petugas', $data);
+    }
+
+    public function orangtua()
+    {
+        $data['title'] = 'Posyandu';
+        return view('dashboard/umum', $data);
     }
 }

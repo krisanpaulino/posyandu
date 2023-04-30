@@ -135,4 +135,10 @@ class Antropometri extends BaseController
 
         return view('antropometri/detail-ukur', $data);
     }
+
+    public function pencarian()
+    {
+
+        return view('hasilukur/pencarian');
+    }
 }
