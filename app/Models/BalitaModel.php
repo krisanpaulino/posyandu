@@ -87,4 +87,10 @@ class BalitaModel extends Model
             $this->where('balita.posyandu_id', $posyandu_id);
         return $this->find();
     }
+
+    public function byNama($nama)
+    {
+        $this->like('balita_nama', '%' . $nama . '%');
+        return $this->find();
+    }
 }

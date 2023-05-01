@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('pencarian', 'Antropometri::pencarian');
+$routes->get('hasilukur/(:num)', 'Antropometri::daftarHasil/$1');
+$routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkurFront/$1/$2');
 $routes->get('auth', 'Auth::loginPage');
 $routes->post('login', 'Auth::login');
 $routes->post('logout', 'Auth::logout');

@@ -29,7 +29,7 @@
 
                     <div class="text-center mt-4">
                         <div class="mb-3">
-                            <a href="" class="auth-logo">
+                            <a href="<?= base_url() ?>" class="auth-logo">
                                 <img src="<?= base_url() ?>assets/images/logo-dark.png" height="90" class="logo-dark mx-auto" alt="">
                             </a>
                         </div>

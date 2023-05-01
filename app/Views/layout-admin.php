@@ -39,7 +39,7 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="<?= base_url() ?>" class="logo logo-light">
+                        <a href="<?= base_url('admin') ?>" class="logo logo-light">
                             <span class="logo-lg">
                                 POSYANDU
                             </span>

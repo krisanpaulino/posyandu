@@ -138,7 +138,57 @@ class Antropometri extends BaseController
 
     public function pencarian()
     {
+        $keyword = $this->request->getGet('balita_nama');
 
-        return view('hasilukur/pencarian');
+        $model = new BalitaModel();
+        $balita = $model->byNama($keyword);
+
+        $data = [
+            'title' => 'Pencarian',
+            'balita' => $balita
+        ];
+        return view('hasilukur/pencarian', $data);
+    }
+
+    public function daftarHasil($balita_id)
+    {
+        $model = new BalitaModel();
+        $balita = $model->findBalita($balita_id);
+
+        $model = new HasilukurModel();
+        $hasilukur = $model->byBalita($balita_id);
+
+        $data = [
+            'title' => 'Daftar Hasil Ukur',
+            'hasilukur' => $hasilukur,
+            'balita' => $balita
+        ];
+
+        return view('frontend/daftar-hasilukur', $data);
+    }
+
+    public function detailUkurFront($balita_id, $periode_id)
+    {
+        $model = new PeriodeModel();
+        $periode = $model->find($periode_id);
+        // dd($periode);
+        $model = new HasilukurModel();
+        $detail = $model->findDetail($balita_id, $periode->periode_id);
+
+        $model = new BalitaModel();
+        $balita = $model->findBalita($balita_id);
+
+        $model = new PosyanduModel();
+        $posyandu = $model->find($balita->posyandu_id);
+        $data = [
+            'title' => 'Detail Ukur Balita',
+            'periode' => $periode,
+            'balita' => $balita,
+            'detail' => $detail,
+            'posyandu' => $posyandu
+        ];
+        // dd($detail);
+
+        return view('frontend/detail-hasilukur', $data);
     }
 }

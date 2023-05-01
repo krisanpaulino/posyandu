@@ -40,7 +40,7 @@
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
 
-                        <a href="<?= base_url() ?>" class="logo logo-light">
+                        <a href="<?= base_url('petugas') ?>" class="logo logo-light">
                             <span class="logo-lg">
                                 POSYANDU
                             </span>
