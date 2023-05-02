@@ -109,7 +109,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="ambangbatas_skormin">Minimum Skor</label>
-                        <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormin'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormin" name="ambangbatas_skormin" value="<?= old('ambangbatas_skormin') ?>" step="0.1">
+                        <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormin'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormin" name="ambangbatas_skormin" value="<?= old('ambangbatas_skormin') ?>" step="0.0001">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['ambangbatas_skormin'])) : ?>
                                 <?= session('errors')['ambangbatas_skormin'] ?>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="ambangbatas_skormax">Maksimal Skor</label>
-                        <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormax'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormax" name="ambangbatas_skormax" value="<?= old('ambangbatas_skormax') ?>" step="0.1">
+                        <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormax'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormax" name="ambangbatas_skormax" value="<?= old('ambangbatas_skormax') ?>" step="0.0001">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['ambangbatas_skormax'])) : ?>
                                 <?= session('errors')['ambangbatas_skormax'] ?>
@@ -176,7 +176,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="ambangbatas_skormin">Minimum Skor</label>
-                            <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormin'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormin" name="ambangbatas_skormin" value="<?= old('ambangbatas_skormin', $ambang->ambangbatas_skormin) ?>" step="0.1">
+                            <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormin'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormin" name="ambangbatas_skormin" value="<?= old('ambangbatas_skormin', $ambang->ambangbatas_skormin) ?>" step="0.0001">
                             <div class="invalid-feedback">
                                 <?php if (isset(session('errors')['ambangbatas_skormin'])) : ?>
                                     <?= session('errors')['ambangbatas_skormin'] ?>
@@ -185,7 +185,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="ambangbatas_skormax">Maksimal Skor</label>
-                            <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormax'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormax" name="ambangbatas_skormax" value="<?= old('ambangbatas_skormax', $ambang->ambangbatas_skormax) ?>" step="0.1">
+                            <input type="number" class="form-control <?= (isset(session('errors')['ambangbatas_skormax'])) ? 'is-invalid' : '' ?>" id="ambangbatas_skormax" name="ambangbatas_skormax" value="<?= old('ambangbatas_skormax', $ambang->ambangbatas_skormax) ?>" step="0.0001">
                             <div class="invalid-feedback">
                                 <?php if (isset(session('errors')['ambangbatas_skormax'])) : ?>
                                     <?= session('errors')['ambangbatas_skormax'] ?>

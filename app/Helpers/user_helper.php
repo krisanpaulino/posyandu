@@ -123,6 +123,7 @@ function getambang($index, $skor)
 {
     $model = new AmbangbatasModel();
     $result = $model->bySkor($index, $skor);
+    // dd($index);
     return $result;
 }
 
