@@ -69,12 +69,58 @@
         </thead>
         <tbody>
             <tr>
-                <td scope="row">1</td>
-                <td>Kacang Goreng</td>
-                <td>Rp5.000,-</td>
-                <td>1</td>
-                <td>25 Oktober 2020, 17:01:03</td>
+                <td scope="row">Jumlah Bayi Terdaftar</td>
+                <?php foreach ($jumlah as $j) : ?>
+                    <td><?= $j ?></td>
+                <?php endforeach; ?>
+                <td></td>
             </tr>
+            <tr>
+                <td colspan="10"></td>
+            </tr>
+            <?php foreach ($gizi as $g) : ?>
+                <tr>
+                    <td><?= $g['status'] ?></td>
+                    <?php if ($g['data'] != null) : ?>
+                        <?php foreach ($g['data']  as $data) : ?>
+                            <td><?= $data ?></td>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    <?php endif; ?>
+                    <td></td>
+                </tr>
+            <?php endforeach ?>
+            <tr>
+                <td colspan="10"></td>
+            </tr>
+            <?php foreach ($tinggi as $g) : ?>
+                <tr>
+                    <td><?= $g['status'] ?></td>
+                    <?php if ($g['data'] != null) : ?>
+                        <?php foreach ($g['data']  as $data) : ?>
+                            <td><?= $data ?></td>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    <?php endif; ?>
+                    <td></td>
+                </tr>
+            <?php endforeach ?>
         </tbody>
     </table>
 </body>

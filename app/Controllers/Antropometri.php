@@ -12,6 +12,7 @@ use App\Models\PosyanduModel;
 use App\Models\StatusgiziModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use App\Libraries\Pdfgenerator;
 
 class Antropometri extends BaseController
 {
@@ -302,10 +303,10 @@ class Antropometri extends BaseController
     public function laporanHasil($posyandu_id, $periode_id)
     {
         $model = new PeriodeModel();
-        $periode = $model->find($periode);
+        $periode = $model->find($periode_id);
 
         $model = new PosyanduModel();
-        $posyandu = $model->find($posyandu_model);
+        $posyandu = $model->find($posyandu_id);
 
         $model = new StatusgiziModel();
         $status = $model->findAll();
@@ -325,19 +326,32 @@ class Antropometri extends BaseController
         }
 
         foreach ($ambang as $key => $a) {
-            $gizi[$key]['status'] = $a->ambangbatas_nama;
-            $gizi[$key]['data'] = $model->dataAmbang($posyandu_id, $periode_id, $a->ambangbatas_bobot);
+            $tinggi[$key]['status'] = $a->ambangbatas_status;
+            $tinggi[$key]['data'] = $model->dataAmbang($posyandu_id, $periode_id, $a->ambangbatas_bobotkriteria);
         }
 
         $data = [
-            'title' => 'Laporan Hasil Posyandu',
+            'title_pdf' => 'Laporan Hasil Posyandu',
             'periode' => $periode,
             'posyandu' => $posyandu,
             'gizi' => $gizi,
             'tinggi' => $tinggi,
             'jumlah' => $jumlah
         ];
+        $pdf = new Pdfgenerator();
 
-        return view('');
+        // title dari pdf
+
+        // filename dari pdf ketika didownload
+        $file_pdf = 'laporan_hasil';
+        // setting paper
+        $paper = 'A4';
+        //orientasi paper potrait / landscape
+        $orientation = "landscape";
+
+        $html = view('pdf-hasilukur', $data,);
+
+        // run dompdf
+        $pdf->generate($html, $file_pdf, $paper, $orientation);
     }
 }

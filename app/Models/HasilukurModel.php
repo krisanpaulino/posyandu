@@ -117,7 +117,7 @@ class HasilukurModel extends Model
 
     public function dataJumlah($posyandu_id, $periode_id)
     {
-        $sql = "SELECT hasilukur.periode_id, 
+        $sql = "SELECT 
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
 (SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
@@ -133,7 +133,7 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
 
     public function dataGizi($posyandu_id, $periode_id, $status)
     {
-        $sql = "SELECT hasilukur.periode_id, 
+        $sql = "SELECT 
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
 (SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
@@ -144,12 +144,13 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
 (SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459P
 FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status GROUP BY periode_id";
         $query = $this->db->query($sql);
+        // dd($this->db->lastQuery);
         return $query->getRowArray();
     }
 
     public function dataAmbang($posyandu_id, $periode_id, $c2)
     {
-        $sql = "SELECT hasilukur.periode_id, 
+        $sql = "SELECT 
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
 (SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
 (SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,

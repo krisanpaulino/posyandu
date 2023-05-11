@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Libraries;
+
 require_once 'dompdf-master/autoload.inc.php';
 
 use Dompdf\Dompdf;
