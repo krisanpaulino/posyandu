@@ -106,6 +106,7 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->get('profil', 'Profil::petugas');
     $routes->post('update-profil', 'Profil::updatePetugas');
     $routes->post('update-login', 'Profil::updateUser');
+    $routes->get('cetak-hasil/(:num)/(:num)', 'Antropometri::cetakHasil/$1/$2');
 
     $routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkur/$1/$2');
 });

@@ -31,6 +31,7 @@ class HasilukurModel extends Model
         'hasilukur_c4bobot',
         'hasilukur_skor',
         'hasilukur_status',
+        'hasilukur_umur',
         'balita_id',
     ];
 
@@ -46,6 +47,7 @@ class HasilukurModel extends Model
         'periode_id' => 'required',
         'hasilukur_tgl' => 'required',
         'hasilukur_posisi' => 'required',
+        'hasilukur_umur' => 'required',
         'hasilukur_bb' => 'required',
         'hasilukur_pbtb' => 'required',
         'hasilukur_bmi' => 'required',
@@ -87,6 +89,7 @@ class HasilukurModel extends Model
     public function findHasil($posyandu_id, $periode_id)
     {
         $this->join('balita', 'balita.balita_id = hasilukur.balita_id');
+        $this->join('posyandu', 'balita.posyandu_id = posyandu.posyandu_id');
         $this->where('balita.posyandu_id', $posyandu_id);
         $this->where('hasilukur.periode_id', $periode_id);
         $this->join('statusgizi', 'statusgizi.statusgizi_id = hasilukur.hasilukur_status', 'left');
@@ -110,5 +113,25 @@ class HasilukurModel extends Model
         $this->where('balita_id', $balita_id);
         $this->orderBy('hasilukur.periode_id', 'desc');
         return $this->find();
+    }
+
+    public function dataJumlah($posyandu_id, $periode_id)
+    {
+        $sql = "SELECT hasilukur.periode_id, 
+(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
+(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
+(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
+(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611P,
+(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223l,
+(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223P,
+(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459l,
+(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459P
+FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id GROUP BY periode_id";
+        $query = $this->db->query($sql);
+        return $query->getRowObject();
+    }
+
+    public function dataGizi($posyandu_id, $periode_id, $status)
+    {
     }
 }

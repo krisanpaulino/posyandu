@@ -69,7 +69,7 @@ class Periksa extends BaseController
         //Dapatkan Hasil Ukur dari Form
         $data = $this->request->getPost();
         $data['periode_id'] = $periode->periode_id;
-
+        $data['hasilukur_umur'] = $balita->umur;
         $data['hasilukur_tgl'] = date('Y-m-d');
 
         //Hitung BMI

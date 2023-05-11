@@ -201,12 +201,103 @@ class Antropometri extends BaseController
 
         $spreadsheet = new Spreadsheet();
 
-        $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'NO')
+        $sheet = $spreadsheet->setActiveSheetIndex(0);
+        $style = array(
+            'alignment' => array(
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            )
+        );
+
+        $sheet->setCellValue('A1', 'NO')
             ->setCellValue('B1', 'Nama Balita')
             ->setCellValue('C1', 'L/P')
             ->setCellValue('D1', 'Tanggal Lahir')
             ->setCellValue('E1', 'Nama Orangtua')
-            ->setCellValue('F1', 'Alamat');
+            ->setCellValue('F1', 'Alamat')
+            ->setCellValue('G1', 'Posyandu')
+            ->setCellValue('H1', 'Desa')
+            ->setCellValue('I1', 'Tanggal Pengukuran')
+            ->setCellValue('J1', 'Umur')
+            ->setCellValue('K1', 'BB')
+            ->setCellValue('L1', 'Posisi')
+            ->setCellValue('M1', 'PB/TB')
+            ->setCellValue('N1', 'BMI')
+            ->setCellValue('O1', 'Status');
+
+        $sheet->mergeCells('A1:A2');
+        $sheet->mergeCells('B1:B2');
+        $sheet->mergeCells('C1:C2');
+        $sheet->mergeCells('D1:D2');
+        $sheet->mergeCells('E1:E2');
+        $sheet->mergeCells('F1:F2');
+        $sheet->mergeCells('G1:G2');
+        $sheet->mergeCells('H1:H2');
+        $sheet->mergeCells('I1:I2');
+        $sheet->mergeCells('J1:J2');
+        $sheet->mergeCells('K1:K2');
+        $sheet->mergeCells('L1:L2');
+        $sheet->mergeCells('M1:M2');
+        $sheet->mergeCells('N1:N2');
+        $sheet->mergeCells('O1:R1');
+
+        $sheet->setCellValue('O2', 'BB/U')
+            ->setCellValue('P2', 'TB/U')
+            ->setCellValue('Q2', 'BB/TB')
+            ->setCellValue('R2', 'IMT/U');
+        $sheet->getStyle('A1:R2')->applyFromArray($style);
+        $sheet->getStyle('A1:R2')->getFont()->setBold(true);
+        $row = 3;
+
+        foreach ($hasilukur as $i => $hasil) {
+            $sheet->setCellValue('A' . $row, $i + 1)
+                ->setCellValue('B' . $row, $hasil->balita_nama)
+                ->setCellValue('C' . $row, $hasil->balita_jk)
+                ->setCellValue('D' . $row, $hasil->balita_tgllahir)
+                ->setCellValue('E' . $row, $hasil->balita_orangtua)
+                ->setCellValue('F' . $row, $hasil->balita_alamat)
+                ->setCellValue('G' . $row, $hasil->posyandu_nama)
+                ->setCellValue('H' . $row, $hasil->posyandu_nama)
+                ->setCellValue('I' . $row, $hasil->hasilukur_tgl)
+                ->setCellValue('J' . $row, $hasil->balita_umur)
+                ->setCellValue('K' . $row, $hasil->hasilukur_bb)
+                ->setCellValue('L' . $row, $hasil->hasilukur_posisi)
+                ->setCellValue('M' . $row, $hasil->hasilukur_pbtb)
+                ->setCellValue('N' . $row, $hasil->hasilukur_bmi)
+                ->setCellValue('O' . $row, getStatus('BB/U', $hasil->hasilukur_c1))
+                ->setCellValue('P' . $row, getStatus('TB/U', $hasil->hasilukur_c2))
+                ->setCellValue('Q' . $row, getStatus('BB/TB', $hasil->hasilukur_c3))
+                ->setCellValue('R' . $row, getStatus('IMT/U', $hasil->hasilukur_c4));
+            $row++;
+        }
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+        $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('F')->setAutoSize(true);
+        $sheet->getColumnDimension('G')->setAutoSize(true);
+        $sheet->getColumnDimension('H')->setAutoSize(true);
+        $sheet->getColumnDimension('I')->setAutoSize(true);
+        $sheet->getColumnDimension('J')->setAutoSize(true);
+        $sheet->getColumnDimension('K')->setAutoSize(true);
+        $sheet->getColumnDimension('L')->setAutoSize(true);
+        $sheet->getColumnDimension('M')->setAutoSize(true);
+        $sheet->getColumnDimension('N')->setAutoSize(true);
+        $sheet->getColumnDimension('O')->setAutoSize(true);
+        $sheet->getColumnDimension('P')->setAutoSize(true);
+        $sheet->getColumnDimension('Q')->setAutoSize(true);
+        $sheet->getColumnDimension('R')->setAutoSize(true);
+        $writer = new Xlsx($spreadsheet);
+        $filename = date('Y-m-d-His') . '-Data-HasilUkur';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
+
+    public function laporanHasil($posyandu_id, $periode_id)
+    {
     }
 }
