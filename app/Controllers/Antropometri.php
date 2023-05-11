@@ -8,6 +8,8 @@ use App\Models\HasilukurModel;
 use App\Models\KriteriaModel;
 use App\Models\PeriodeModel;
 use App\Models\PosyanduModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Antropometri extends BaseController
 {
@@ -190,5 +192,21 @@ class Antropometri extends BaseController
         // dd($detail);
 
         return view('frontend/detail-hasilukur', $data);
+    }
+
+    public function cetakHasil($posyandu_id, $periode_id)
+    {
+        $model = new HasilukurModel();
+        $hasilukur = $model->findHasil($posyandu_id, $periode_id);
+
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'NO')
+            ->setCellValue('B1', 'Nama Balita')
+            ->setCellValue('C1', 'L/P')
+            ->setCellValue('D1', 'Tanggal Lahir')
+            ->setCellValue('E1', 'Nama Orangtua')
+            ->setCellValue('F1', 'Alamat');
     }
 }
