@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AmbangbatasModel;
 use App\Models\BalitaModel;
 use App\Models\HasilukurModel;
 use App\Models\KriteriaModel;
 use App\Models\PeriodeModel;
 use App\Models\PosyanduModel;
+use App\Models\StatusgiziModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -299,5 +301,43 @@ class Antropometri extends BaseController
 
     public function laporanHasil($posyandu_id, $periode_id)
     {
+        $model = new PeriodeModel();
+        $periode = $model->find($periode);
+
+        $model = new PosyanduModel();
+        $posyandu = $model->find($posyandu_model);
+
+        $model = new StatusgiziModel();
+        $status = $model->findAll();
+
+        $model = new AmbangbatasModel();
+        $ambang = $model->byIndex('TB/U');
+
+        $model = new HasilukurModel();
+        $jumlah = $model->dataJumlah($posyandu_id, $periode_id);
+
+        $gizi = [];
+        $tinggi = [];
+
+        foreach ($status as $key => $s) {
+            $gizi[$key]['status'] = $s->statusgizi_nama;
+            $gizi[$key]['data'] = $model->dataGizi($posyandu_id, $periode_id, $s->statusgizi_id);
+        }
+
+        foreach ($ambang as $key => $a) {
+            $gizi[$key]['status'] = $a->ambangbatas_nama;
+            $gizi[$key]['data'] = $model->dataAmbang($posyandu_id, $periode_id, $a->ambangbatas_bobot);
+        }
+
+        $data = [
+            'title' => 'Laporan Hasil Posyandu',
+            'periode' => $periode,
+            'posyandu' => $posyandu,
+            'gizi' => $gizi,
+            'tinggi' => $tinggi,
+            'jumlah' => $jumlah
+        ];
+
+        return view('');
     }
 }

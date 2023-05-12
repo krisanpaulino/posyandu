@@ -59,4 +59,9 @@ class AmbangbatasModel extends Model
         $this->where('ambangbatas_skormax >=', $skor, true);
         return $this->first();
     }
+    public function byIndex($index)
+    {
+        $this->where('ambangbatas_index', $index);
+        return $this->findAll();
+    }
 }
