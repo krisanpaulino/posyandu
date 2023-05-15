@@ -84,6 +84,9 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('hasilukur/(:num)', 'Antropometri::posyandu/$1');
     $routes->get('hasilukur/(:num)/posyandu/(:num)', 'Antropometri::detailAdmin/$1/$2');
     $routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkur/$1/$2');
+
+    $routes->get('cetak-hasil/(:num)/(:num)', 'Antropometri::cetakHasil/$1/$2');
+    $routes->get('laporan-hasil/(:num)/(:num)', 'Antropometri::laporanHasil/$1/$2');
 });
 
 $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {

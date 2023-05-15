@@ -70,55 +70,62 @@
         <tbody>
             <tr>
                 <td scope="row">Jumlah Bayi Terdaftar</td>
+                <?php $total = 0; ?>
                 <?php foreach ($jumlah as $j) : ?>
+                    <?php $total += $j ?>
                     <td><?= $j ?></td>
                 <?php endforeach; ?>
-                <td></td>
+                <td><?= $total ?></td>
             </tr>
             <tr>
                 <td colspan="10"></td>
             </tr>
             <?php foreach ($gizi as $g) : ?>
+                <?php $total = 0; ?>
                 <tr>
                     <td><?= $g['status'] ?></td>
                     <?php if ($g['data'] != null) : ?>
                         <?php foreach ($g['data']  as $data) : ?>
+                            <?php $total += $data ?>
                             <td><?= $data ?></td>
                         <?php endforeach; ?>
+
                     <?php else : ?>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
                     <?php endif; ?>
-                    <td></td>
+                    <td><?= $total ?></td>
                 </tr>
             <?php endforeach ?>
             <tr>
                 <td colspan="10"></td>
             </tr>
             <?php foreach ($tinggi as $g) : ?>
+                <?php $total = 0; ?>
                 <tr>
                     <td><?= $g['status'] ?></td>
                     <?php if ($g['data'] != null) : ?>
                         <?php foreach ($g['data']  as $data) : ?>
+                            <?php $total += $data ?>
                             <td><?= $data ?></td>
                         <?php endforeach; ?>
                     <?php else : ?>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
                     <?php endif; ?>
-                    <td></td>
+                    <td><?= $total ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>

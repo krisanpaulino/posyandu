@@ -54,6 +54,8 @@
                         <input type="hidden" name="periode_id" value="<?= $periode->periode_id ?>">
                         <input type="hidden" name="posyandu_id" value="<?= $posyandu->posyandu_id ?>">
                         <button type="submit" class="btn btn-primary"><i class="ri-calculator-line"></i> Hitung</button>
+                        <a href="<?= base_url(session('user')->user_type . '/cetak-hasil/' . $posyandu->posyandu_id . '/' . $periode->periode_id) ?>" class="btn btn-warning"><i class="ri-printer-line"></i> Cetak Laporan Gizi</a>
+                        <a href="<?= base_url(session('user')->user_type . '/laporan-hasil/' . $posyandu->posyandu_id . '/' . $periode->periode_id) ?>" class="btn btn-warning"><i class="ri-printer-line"></i> Cetak Laporan Posyandu</a>
                     </form>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

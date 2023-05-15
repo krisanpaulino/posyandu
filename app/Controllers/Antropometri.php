@@ -197,6 +197,7 @@ class Antropometri extends BaseController
         return view('frontend/detail-hasilukur', $data);
     }
 
+
     public function cetakHasil($posyandu_id, $periode_id)
     {
         $model = new HasilukurModel();
@@ -259,7 +260,7 @@ class Antropometri extends BaseController
                 ->setCellValue('E' . $row, $hasil->balita_orangtua)
                 ->setCellValue('F' . $row, $hasil->balita_alamat)
                 ->setCellValue('G' . $row, $hasil->posyandu_nama)
-                ->setCellValue('H' . $row, $hasil->posyandu_nama)
+                ->setCellValue('H' . $row, $hasil->balita_alamat)
                 ->setCellValue('I' . $row, $hasil->hasilukur_tgl)
                 ->setCellValue('J' . $row, $hasil->balita_umur)
                 ->setCellValue('K' . $row, $hasil->hasilukur_bb)
