@@ -115,6 +115,7 @@ class HasilukurModel extends Model
         return $this->find();
     }
 
+
     public function dataJumlah($posyandu_id, $periode_id)
     {
         $sql = "SELECT 
