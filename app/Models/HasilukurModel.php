@@ -118,14 +118,14 @@ class HasilukurModel extends Model
     public function dataJumlah($posyandu_id, $periode_id)
     {
         $sql = "SELECT 
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459P
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 ) as _05l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 AND hasilukur.balita_id = b.balita_id) as _05p,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 ) as _2459l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 AND hasilukur.hasilukur_id = hasilukur.hasilukur_id) as _2459P
 FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id GROUP BY periode_id";
         $query = $this->db->query($sql);
         return $query->getRowArray();
@@ -134,14 +134,14 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
     public function dataGizi($posyandu_id, $periode_id, $status)
     {
         $sql = "SELECT 
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459P
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 ) as _05l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 ) as _05p,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 ) as _2459l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 ) as _2459P
 FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_status = $status GROUP BY periode_id";
         $query = $this->db->query($sql);
         // dd($this->db->lastQuery);
@@ -151,14 +151,14 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
     public function dataAmbang($posyandu_id, $periode_id, $c2)
     {
         $sql = "SELECT 
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 0 AND a.hasilukur_umur <= 5 ) as _05p,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 6 AND a.hasilukur_umur <= 11 ) as _611P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 12 AND a.hasilukur_umur <= 23 ) as _1223P,
-(SELECT COUNT(*) FROM hasilukur a WHERE b.balita_jk = 'L' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459l,
-(SELECT COUNT(*) FROM hasilukur a where b.balita_jk = 'P' AND a.hasilukur_umur >= 24 AND a.hasilukur_umur <= 59 ) as _2459P
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 ) as _05l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 0 AND hasilukur.hasilukur_umur <= 5 ) as _05p,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 6 AND hasilukur.hasilukur_umur <= 11 ) as _611P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 12 AND hasilukur.hasilukur_umur <= 23 ) as _1223P,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'L' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 ) as _2459l,
+(SELECT COUNT(*) FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 AND b.balita_jk = 'P' AND hasilukur.hasilukur_umur >= 24 AND hasilukur.hasilukur_umur <= 59 ) as _2459P
 FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_id = $periode_id AND b.posyandu_id = $posyandu_id AND hasilukur.hasilukur_c2bobot = $c2 GROUP BY periode_id";
         $query = $this->db->query($sql);
         return $query->getRowArray();
