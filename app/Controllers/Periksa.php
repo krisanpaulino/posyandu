@@ -108,7 +108,7 @@ class Periksa extends BaseController
         }
         $data['hasilukur_c2'] = $skor;
         // dd($skor);
-        dd(getambang('TB/U', $data['hasilukur_c2']));
+        // dd(getambang('TB/U', $data['hasilukur_c2']));
         //DAPATKAN BOBOT
         $data['hasilukur_c2bobot'] = getambang('TB/U', $data['hasilukur_c2'])->ambangbatas_bobotkriteria;
 
