@@ -58,4 +58,13 @@ class Posyandu extends BaseController
 
         return view('posyandu/detail', $data);
     }
+
+    public function hapus()
+    {
+        $posyandu_id = $this->request->getPost('posyandu_id');
+        $model = new PosyanduModel();
+        $model->where('posyandu_id', $posyandu_id);
+        $model->delete($posyandu_id);
+        return redirect()->to(previous_url())->with('success', 'Data Posyandu Berhasil Dihapus');
+    }
 }

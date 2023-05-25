@@ -43,7 +43,7 @@
         </div>
     <?php endif ?>
     <div class="d-flex justify-content-end mb-2">
-        <a href="<?= base_url(session('user')->user_type . '/hasilukur/' . $periode->periode_id . '/posyandu/' . $posyandu->posyandu_id) ?>" class="button btn btn-warning">Kembali</a>
+        <a href="<?= base_url(session('user')->user_type . '/hasilukur/' . $periode->periode_id . '/') ?><?= (session('user')->user_type == 'admin') ? 'posyandu/' . $posyandu->posyandu_id : '' ?>" class="button btn btn-warning">Kembali</a>
 
     </div>
     <div class="col-md-4">

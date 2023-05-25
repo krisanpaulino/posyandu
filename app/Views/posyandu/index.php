@@ -56,7 +56,6 @@
                                 <td>
                                     <form action="<?= base_url('admin/posyandu/hapus') ?>" method="post">
                                         <input type="hidden" name="posyandu_id" value="<?= $p->posyandu_id ?>">
-                                        <a href="<?= base_url('admin/posyandu/' . $p->posyandu_id) ?>" class="badge bg-primary">Lihat</a>
                                         <button type="submit" onclick="return confirm('Apakah anda yakin?')" class="badge bg-danger border text-light">Hapus</button>
                                     </form>
                                 </td>

@@ -46,11 +46,17 @@ class Balita extends BaseController
     {
         $model = new BalitaModel();
         $balita = $model->find($balita_id);
-
         $data = [
             'title' => 'Detail Balita',
             'balita' => $balita
         ];
+        if (session('user')->user_type == 'admin') {
+            $model = new PosyanduModel();
+            $posyandu = $model->findAll();
+            $data['posyandu'] = $posyandu;
+        }
+
+
 
         return view('balita/detail', $data);
     }
