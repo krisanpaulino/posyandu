@@ -48,7 +48,7 @@
                                 <td><?= $p->petugas_jk ?></td>
                                 <td><?= $p->posyandu_nama ?></td>
                                 <td>
-                                    <form action="<?= base_url('admin/user/hapus') ?>" method="post">
+                                    <form action="<?= base_url('admin/petugas/hapus') ?>" method="post">
                                         <input type="hidden" name="user_id" value="<?= $p->user_id ?>">
                                         <a href="<?= base_url('admin/petugas/' . $p->petugas_id) ?>" class="badge bg-primary">Detail</a>
                                         <button type="submit" class="badge bg-danger border">Hapus</button>
