@@ -39,7 +39,7 @@ class User extends BaseController
         $model = new UserModel();
         $user_id = $this->request->getPost('user_id');
         $model->delete($user_id);
-        return redirect()->to('admin/user');
+        return redirect()->to('admin/admin');
     }
 
     public function petugas()
@@ -145,5 +145,12 @@ class User extends BaseController
         $model->where('petugas_id', $petugas_id);
         $model->update($petugas_id, $data);
         return redirect()->to(previous_url())->with('success', 'Data berhasil diubah');
+    }
+    public function deletePetugas()
+    {
+        $model = new UserModel();
+        $user_id = $this->request->getPost('user_id');
+        $model->delete($user_id);
+        return redirect()->to('admin/petugas');
     }
 }

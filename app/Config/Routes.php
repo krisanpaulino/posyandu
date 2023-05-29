@@ -42,6 +42,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('admin', 'User::admin');
     $routes->post('admin/tambah', 'User::storeAdmin');
     $routes->post('user/hapus', 'User::deleteAdmin');
+    $routes->post('petugas/hapus', 'User::deletePetugas');
 
     $routes->get('petugas', 'User::petugas');
     $routes->post('petugas/tambah', 'User::storePetugas');
