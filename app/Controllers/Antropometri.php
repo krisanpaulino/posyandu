@@ -262,7 +262,7 @@ class Antropometri extends BaseController
                 ->setCellValue('G' . $row, $hasil->posyandu_nama)
                 ->setCellValue('H' . $row, $hasil->balita_alamat)
                 ->setCellValue('I' . $row, $hasil->hasilukur_tgl)
-                ->setCellValue('J' . $row, $hasil->balita_umur)
+                ->setCellValue('J' . $row, $hasil->hasilukur_umur)
                 ->setCellValue('K' . $row, $hasil->hasilukur_bb)
                 ->setCellValue('L' . $row, $hasil->hasilukur_posisi)
                 ->setCellValue('M' . $row, $hasil->hasilukur_pbtb)
