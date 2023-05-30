@@ -155,8 +155,9 @@ class Antropometri extends BaseController
         return view('hasilukur/pencarian', $data);
     }
 
-    public function daftarHasil($balita_id)
+    public function daftarHasil()
     {
+        $balita_id = session('balita')->balita_id;
         $model = new BalitaModel();
         $balita = $model->findBalita($balita_id);
 
@@ -172,8 +173,9 @@ class Antropometri extends BaseController
         return view('frontend/daftar-hasilukur', $data);
     }
 
-    public function detailUkurFront($balita_id, $periode_id)
+    public function detailUkurFront($periode_id)
     {
+        $balita_id = session('balita')->balita_id;
         $model = new PeriodeModel();
         $periode = $model->find($periode_id);
         // dd($periode);

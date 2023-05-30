@@ -3,18 +3,9 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
-        <!-- <h1>Selamat Datang Di Posyandu</h1> -->
-        <h2>Masukkan nama balita anda untuk melihat kembali hasil pemeriksaan!</h2>
+        <h1>Selamat Datang Di Posyandu</h1>
+        <h2>Hasil Ukur Balita</h2>
 
-        <form action="<?= base_url('pencarian') ?>" method="get" class="php-email-form">
-            <div class="row no-gutters">
-                <div class="col-md-6 form-group pr-md-1">
-                    <input type="text" name="balita_nama" value="" class="form-control" id="balita_nama" placeholder="Nama Balita" required>
-                </div>
-            </div>
-
-            <div class="text-center"><button type="submit">Lihat</button></div>
-        </form>
     </div>
 </section>
 <!-- #hero -->
@@ -40,6 +31,7 @@
                                     <th style="width: 10%;">No</th>
                                     <th>Bulan</th>
                                     <th>Tahun</th>
+                                    <th>Usia Pengukuran (Bln)</th>
                                     <th>Status Gizi</th>
                                     <th>Lihat</th>
                                 </tr>
@@ -51,9 +43,10 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= konversiBulan($h->periode_bulan) ?></td>
                                         <td><?= $h->periode_tahun ?></td>
+                                        <td><?= $h->hasilukur_umur ?></td>
                                         <td><?= $h->statusgizi_nama ?></td>
                                         <td>
-                                            <a href="<?= base_url('hasilukur/' . $balita->balita_id . '/detail/' . $h->periode_id) ?>">Lihat</a>
+                                            <a href="<?= base_url('hasilukur/' . $h->periode_id) ?>">Lihat</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

@@ -31,8 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('pencarian', 'Antropometri::pencarian');
-$routes->get('hasilukur/(:num)', 'Antropometri::daftarHasil/$1');
-$routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkurFront/$1/$2');
+$routes->get('hasilukur', 'Antropometri::daftarHasil');
+$routes->get('hasilukur/(:num)', 'Antropometri::detailUkurFront/$1');
 $routes->get('auth', 'Auth::loginPage');
 $routes->post('login', 'Auth::login');
 $routes->post('logout', 'Auth::logout');
@@ -59,6 +59,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('balita/tambah', 'Balita::store');
     $routes->post('balita/update', 'Balita::update');
     $routes->post('balita/hapus', 'Balita::delete');
+    $routes->post('balita/buat-akun', 'Balita::buatAkun');
 
     $routes->get('periode', 'Periode::index');
     $routes->post('periode/tambah', 'Periode::store');
@@ -97,6 +98,7 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->post('balita/tambah', 'Balita::store');
     $routes->post('balita/update', 'Balita::update');
     $routes->post('balita/hapus', 'Balita::delete');
+    $routes->post('balita/buat-akun', 'Balita::buatAkun');
 
     $routes->get('periksa', 'Periksa::index');
     $routes->get('periksa/(:num)', 'Periksa::periksa/$1');

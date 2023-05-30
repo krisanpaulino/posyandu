@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <a href="<?= base_url('hasilukur/' . $balita->balita_id) ?>">
+                <a href="<?= base_url('hasilukur/') ?>">
                     << Kembali </a>
             </div>
         </div>

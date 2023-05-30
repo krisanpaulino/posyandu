@@ -25,7 +25,7 @@ class UserModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'user_email' => 'required|valid_email|is_unique[user.user_email, user_id, {user_id}]',
+        'user_email' => 'required|is_unique[user.user_email, user_id, {user_id}]',
         'user_type' => 'required',
         'user_password' => 'required',
         'password_confirmation' => 'required|matches[user_password]',

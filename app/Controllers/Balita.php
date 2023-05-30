@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BalitaModel;
 use App\Models\PosyanduModel;
+use App\Models\UserModel;
 
 class Balita extends BaseController
 {
@@ -31,8 +32,21 @@ class Balita extends BaseController
         $data['balita_tgllahir'] = date('Y-m-d', strtotime($data['balita_tgllahir']));
         if (session('user')->user_type == 'petugas')
             $data['posyandu_id'] = session('petugas')->posyandu_id;
-        if ($model->insert($data)) {
-            return redirect()->to(previous_url())
+        if ($id = $model->insert($data, true)) {
+            $username = $id . date('d') . date('m') . date('y');
+            $model = new UserModel();
+            $user = [
+                'user_email' => $username,
+                'user_type' => 'orangtua',
+                'user_password' => '12345',
+                'password_confirmation' => '12345'
+            ];
+            $uid = $model->insert($user, true);
+            $model = new BalitaModel();
+            $model->where('balita_id', $id);
+            $model->update($id, ['user_id' => $uid]);
+
+            return redirect()->to(session('user')->user_type . '/balita/' . $id)
                 ->with('success', 'Data balita berhasil ditambahkan!');
         }
 
@@ -42,10 +56,30 @@ class Balita extends BaseController
             ->withInput();
     }
 
+    public function buatAkun()
+    {
+        $id = $this->request->getPost('balita_id');
+        $username = $id . date('d') . date('m') . date('y');
+        $model = new UserModel();
+        $user = [
+            'user_email' => $username,
+            'user_type' => 'orangtua',
+            'user_password' => '12345',
+            'password_confirmation' => '12345'
+        ];
+        $uid = $model->insert($user, true);
+        $model = new BalitaModel();
+        $model->where('balita_id', $id);
+        $model->update($id, ['user_id' => $uid]);
+        return redirect()->to(previous_url())
+            ->with('success', 'Sukses Buat Akun!')
+            ->withInput();
+    }
+
     public function detail($balita_id)
     {
         $model = new BalitaModel();
-        $balita = $model->find($balita_id);
+        $balita = $model->findBalita($balita_id);
         $data = [
             'title' => 'Detail Balita',
             'balita' => $balita

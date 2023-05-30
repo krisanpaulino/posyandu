@@ -34,11 +34,19 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title"></h4>
+                <?php if ($balita->user_id != null) : ?>
+                    <h4 class="card-title">USER ID : <?= $balita->user_email ?></h4>
+                <?php else : ?>
+                    <form action="<?= base_url(session('user')->user_type) . '/balita/buat-akun' ?>" method="post">
+                        <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
+                        <button type="submit" class="btn btn-warning">Buat Akun</button>
+                    </form>
+                <?php endif; ?>
                 <p class="card-title-desc"></p>
                 </p>
 
                 <form action="<?= base_url(session('user')->user_type . '/balita/update') ?>" method="post">
+
                     <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
                     <div class="form-group mb-4">
                         <label for="balita_nama">Nama Balita</label>

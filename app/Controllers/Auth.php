@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BalitaModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
 
@@ -47,6 +48,17 @@ class Auth extends BaseController
                 session()->set($data);
                 return redirect()->to('petugas');
                 break;
+            case 'orangtua':
+                $model = new BalitaModel();
+
+                $data = [
+                    'user' => $user,
+                    'balita' => $model->where('user_id', $user->user_id)->first(),
+                    'orangtua_logged_in' => 1,
+                ];
+                session()->set($data);
+                return redirect()->to('/');
+                break;
             case 'admin':
                 $data = [
                     'user' => $user,
@@ -71,10 +83,10 @@ class Auth extends BaseController
         session()->destroy();
         return redirect()->to('login-pelanggan');
     }
-    public function signupPelanggan()
-    {
-        $model = new KelurahanModel();
-        $data['data_kelurahan'] = $model->findAll();
-        return view('signup_pelanggan', $data);
-    }
+    // public function signupPelanggan()
+    // {
+    //     $model = new KelurahanModel();
+    //     $data['data_kelurahan'] = $model->findAll();
+    //     return view('signup_pelanggan', $data);
+    // }
 }

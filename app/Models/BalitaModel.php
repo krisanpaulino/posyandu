@@ -22,6 +22,7 @@ class BalitaModel extends Model
         'balita_orangtua',
         'balita_alamat',
         'posyandu_id',
+        'user_id'
     ];
 
     // Dates
@@ -59,6 +60,7 @@ class BalitaModel extends Model
     public function findBalita($balita_id = null)
     {
         $this->join('posyandu', 'posyandu.posyandu_id = balita.posyandu_id');
+        $this->join('user', 'user.user_id = balita.user_id', 'left');
         if ($balita_id == null) {
             return $this->find();
         }

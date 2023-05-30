@@ -47,8 +47,8 @@
       <button type="button" class="nav-toggle"><i class="bx bx-menu"></i></button>
       <nav class="nav-menu">
         <ul>
-          <?php if (session()->has('user')) : ?>
-            <li class=""><a href="<?= base_url(session('user')->user_type) ?>" class="scrollto">Halaman <?= session('user')->user_type ?></a></li>
+          <?php if (session()->has('balita')) : ?>
+            <li class=""><a href="<?= base_url('hasilukur') ?>" class="scrollto">Halaman Hasil Ukur</a></li>
           <?php else : ?>
             <li class=""><a href="<?= base_url('auth') ?>" class="scrollto">Login (Admin / Petugas)</a></li>
           <?php endif; ?>
@@ -62,23 +62,44 @@
   <section id="hero">
     <div class="hero-container">
       <h1>Selamat Datang Di Posyandu</h1>
-      <h2>Masukkan nama balita anda untuk melihat kembali hasil pemeriksaan!</h2>
-
-      <form action="<?= base_url('pencarian') ?>" method="get" class="php-email-form">
-        <div class="row no-gutters">
-          <div class="col-md-6 form-group pr-md-1">
-            <input type="text" name="balita_nama" class="form-control" id="balita_nama" placeholder="Nama Balita" required>
+      <?php if (session()->has('orangtua_kogged_id')) : ?>
+        <h2>Masukkan USER ID dan Passwor anda untuk melihat kembali hasil pemeriksaan!</h2>
+        <?php if (session()->has('success')) : ?>
+          <div class="alert alert-success border-0 bg-success alert-dismissible fade show">
+            <div class="text-white"><?= session('success') ?></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-        </div>
+        <?php endif ?>
+        <?php if (session()->has('danger')) : ?>
+          <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+            <div class="text-white"><?= session('danger') ?></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php endif ?>
+        <form action="<?= base_url('login') ?>" method="POST" class="php-email-form">
+          <div class="row no-gutters">
+            <div class="col-md-6 form-group pr-md-1 mb-2">
+              <input type="text" name="email" class="form-control" id="balita_nama" placeholder="UserID" required>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-md-6 form-group pr-md-1">
+              <input type="password" name="password" class="form-control" id="_balita_nama" placeholder="Password" required>
+            </div>
+          </div>
 
-
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your notification request was sent. Thank you!</div>
+          <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your notification request was sent. Thank you!</div>
+          </div>
+          <div class="text-center"><button type="submit">Login</button></div>
+        </form>
+      <?php else : ?>
+        <div class="text-center">
+          <a href="<?= base_url('hasilukur') ?>" class="btn btn-warning btn-round">Hasil Ukur</a>
         </div>
-        <div class="text-center"><button type="submit">Lihat</button></div>
-      </form>
+      <?php endif; ?>
     </div>
   </section><!-- #hero -->
 
