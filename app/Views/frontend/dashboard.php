@@ -62,7 +62,7 @@
   <section id="hero">
     <div class="hero-container">
       <h1>Selamat Datang Di Posyandu</h1>
-      <?php if (session()->has('orangtua_kogged_id')) : ?>
+      <?php if (!session()->has('orangtua_logged_id')) : ?>
         <h2>Masukkan USER ID dan Passwor anda untuk melihat kembali hasil pemeriksaan!</h2>
         <?php if (session()->has('success')) : ?>
           <div class="alert alert-success border-0 bg-success alert-dismissible fade show">

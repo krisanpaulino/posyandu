@@ -11,7 +11,7 @@ class Auth extends BaseController
 {
     public function loginPage()
     {
-        if (session()->has('user')) {
+        if (session()->has('user') && session('user')->user_type != 'orangtua') {
             return redirect()->to(session()->get('user')->user_type);
         }
         return view('login');
