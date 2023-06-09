@@ -99,6 +99,7 @@ class Balita extends BaseController
     {
         $data = $this->request->getPost();
         $balita_id = $this->request->getPost('balita_id');
+        $data['balita_tgllahir'] = date('Y-m-d', strtotime($data['balita_tgllahir']));
 
         $model = new BalitaModel();
         $model->where('balita_id', $balita_id);
