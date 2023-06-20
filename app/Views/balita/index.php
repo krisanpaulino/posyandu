@@ -40,7 +40,7 @@
                 <!-- Content Here -->
                 <div class="mb-4 d-flex justify-content-between">
                     <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cetak"><i class="ri-printer-line"></i> Cetak Laporan Posyandu</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cetak"><i class="ri-printer-line"></i> Cetak Data Balita</button>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
@@ -181,10 +181,10 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <?php if (session()->has('admin_logged_id')) : ?>
+                    <?php if (session()->has('admin_logged_in')) : ?>
                         <div class="form-group mb-4">
                             <label for="posyandu_id">Kelompok Penimbang</label>
-                            <select name="posyandu_id" class="custom-select" id="">
+                            <select name="posyandu_id" class="form-select" id="">
                                 <option value="">Semua</option>
                                 <?php foreach ($posyandu as $p) : ?>
                                     <option value="<?= $p->posyandu_id ?>"><?= $p->posyandu_nama ?></option>

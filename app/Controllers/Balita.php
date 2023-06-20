@@ -152,7 +152,8 @@ class Balita extends BaseController
         }
         $model = new BalitaModel();
         $balita = $model->findCetak($periode_id, $posyandu_id);
-
+        if (empty($balita))
+            return redirect()->back()->with('danger', 'Tidak ada data pengukuran periode ini!');
         $data = [
             'title_pdf' => 'Laporan Hasil Posyandu',
             'periode' => $periode,

@@ -353,7 +353,9 @@ class Antropometri extends BaseController
 
         $model = new HasilukurModel();
         $jumlah = $model->dataJumlah($posyandu_id, $periode_id);
-        $tglukur = $model->getTglUkur($posyandu_id, $periode_id);
+        if ($jumlah == null)
+            return redirect()->to(previous_url())->with('warning', 'Tidak ada data!');
+        $tglukur = $model->getTglUkur($periode_id, $posyandu_id);
         $gizi = [];
         $tinggi = [];
 

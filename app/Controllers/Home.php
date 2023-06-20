@@ -57,6 +57,7 @@ class Home extends BaseController
         $jumlah_balita = $model->findJumlahBalita(session('petugas')->posyandu_id);
         $model = new HasilukurModel();
         $status_gizi = $model->findJumlah($periode->periode_id, session('petugas')->posyandu_id);
+        // dd($status_gizi);
         $data['jumlah_balita'] = $jumlah_balita;
         $data['periode'] = $periode;
         $data['status_gizi'] = $status_gizi;

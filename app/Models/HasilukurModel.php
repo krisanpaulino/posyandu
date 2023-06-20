@@ -175,6 +175,7 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
         if ($posyandu_id != null)
             $this->where('balita.posyandu_id', $posyandu_id);
         $this->groupBy('hasilukur_status');
+        // return $this->builder()->getCompiledSelect();
         return $this->find();
     }
     public function getTglUkur($periode_id, $posyandu_id)
@@ -183,6 +184,7 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
         $this->join('balita', 'balita.balita_id = hasilukur.balita_id');
         $this->where('periode_id', $periode_id);
         $this->where('balita.posyandu_id', $posyandu_id);
+        // dd($this->builder()->getCompiledSelect());
         return $this->first()->hasilukur_tgl;
     }
 }

@@ -41,6 +41,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif ?>
+    <?php if (session()->has('warning')) : ?>
+        <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show">
+            <div class="text-white"><?= session('warning') ?></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
     <div class="col-12">
         <div class="card">
             <div class="card-body">

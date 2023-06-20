@@ -62,6 +62,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->post('balita/update', 'Balita::update');
     $routes->post('balita/hapus', 'Balita::delete');
     $routes->post('balita/buat-akun', 'Balita::buatAkun');
+    $routes->post('laporan-balita', 'Balita::laporanBalita');
 
     $routes->get('periode', 'Periode::index');
     $routes->post('periode/tambah', 'Periode::store');

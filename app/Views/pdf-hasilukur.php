@@ -33,8 +33,8 @@
 
         #table th {
             font-size: x-small;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             text-align: left;
             background-color: #4CAF50;
             color: white;
