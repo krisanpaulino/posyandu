@@ -34,7 +34,7 @@ class Balita extends BaseController
         $data = $this->request->getPost();
         //Hitung umur
         $tgllahir = new DateTime($data['balita_tgllahir']);
-        $now = new DateTime();
+        $now = new DateTime($data['tgldaftar']);
         $diff = $now->diff($tgllahir);
         $data['balita_umur'] = ($diff->y * 12) + $diff->m;
         if ($data['balita_umur'] > 59)

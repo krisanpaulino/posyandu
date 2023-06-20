@@ -121,6 +121,15 @@
                         </div>
                     </div>
                     <div class="form-group mb-4">
+                        <label for="tgldaftar">Tgl Daftar</label>
+                        <input type="text" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy" class="form-control input-mask <?= (isset(session('errors')['tgldaftar'])) ? 'is-invalid' : '' ?>" id="tgldaftar" name="tgldaftar" value="<?= old('tgldaftar') ?>" required>
+                        <div class="invalid-feedback">
+                            <?php if (isset(session('errors')['tgldaftar'])) : ?>
+                                <?= session('errors')['tgldaftar'] ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
                         <label for="balita_orangtua">Orang Tua Balita</label>
                         <input type="text" class="form-control <?= (isset(session('errors')['balita_orangtua'])) ? 'is-invalid' : '' ?>" id="balita_orangtua" name="balita_orangtua" value="<?= old('balita_orangtua') ?>">
                         <div class="invalid-feedback">
