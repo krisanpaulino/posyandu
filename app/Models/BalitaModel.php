@@ -95,4 +95,23 @@ class BalitaModel extends Model
         $this->like('balita_nama', '%' . $nama . '%');
         return $this->find();
     }
+
+    function findJumlahBalita($posyandu_id = null)
+    {
+        $this->selectCount('balita_id', 'jumlah');
+        $this->where('balita_umur <= ', 59, true);
+        if ($posyandu_id != null)
+            $this->where('posyandu_id', $posyandu_id);
+        return $this->first();
+    }
+    function findCetak($periode_id, $posyandu_id = null)
+    {
+        $this->join('hasilukur', 'hasilukur.balita_id = balita.balita_id');
+        $this->join('posyandu', 'posyandu.posyandu_id = balita.posyandu_id');
+        $this->where('hasilukur.periode_id', $periode_id);
+        if ($posyandu_id != null)
+            $this->where('balita.posyandu_id', $posyandu_id);
+        $this->orderBy('balita.posyandu_id');
+        return $this->find();
+    }
 }

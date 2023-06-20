@@ -52,7 +52,9 @@
 
     <!-- Vendor JS Files -->
     <script src="<?= base_url('assets/frontend/') ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>assets/libs/apexcharts/apexcharts.min.js"></script>
 
+    <?= $this->renderSection('scripts'); ?>
     <!-- Template Main JS File -->
     <script src="<?= base_url('assets/frontend/') ?>assets/js/main.js"></script>
 

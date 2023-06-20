@@ -38,8 +38,9 @@
                 </p>
                 <!-- end row -->
                 <!-- Content Here -->
-                <div class="mb-4">
+                <div class="mb-4 d-flex justify-content-between">
                     <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cetak"><i class="ri-printer-line"></i> Cetak Laporan Posyandu</button>
                 </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
@@ -166,7 +167,45 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Tutup</button>
-                    <button type="sumbit" class="btn btn-primary waves-effect waves-light">Tambah</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Tambah</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</form>
+<form action="<?= base_url(session('user')->user_type . '/laporan-balita') ?>" method="post" target="_blank" autocomplete="off">
+    <div id="cetak" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Pilih Periode</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-4">
+                        <label for="periode_id">Periode</label>
+                        <select name="periode_id" class="form-select" id="">
+                            <?php foreach ($periode as $p) : ?>
+                                <option value="<?= $p->periode_id ?>"><?= konversiBulan($p->periode_bulan) ?> <?= $p->periode_tahun ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <?php if (session()->has('admin_logged_id')) : ?>
+                        <div class="form-group mb-4">
+                            <label for="posyandu_id">Kelompok Penimbang</label>
+                            <select name="posyandu_id" class="custom-select" id="">
+                                <option value="">Semua</option>
+                                <?php foreach ($posyandu as $p) : ?>
+                                    <option value="<?= $p->posyandu_id ?>"><?= $p->posyandu_nama ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-warning waves-effect waves-light">Cetak</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

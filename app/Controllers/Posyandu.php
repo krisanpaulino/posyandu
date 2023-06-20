@@ -13,7 +13,7 @@ class Posyandu extends BaseController
         $model = new PosyanduModel();
         $posyandu = $model->findAll();
         $data = [
-            'title' => 'Posyandu',
+            'title' => 'Kelompok Penimbang',
             'posyandu' => $posyandu
         ];
 
@@ -24,6 +24,14 @@ class Posyandu extends BaseController
     {
         $data = $this->request->getPost();
         $model = new PosyanduModel();
+        $file = $this->request->getFile('file');
+        if (!empty($file) && $file->isValid()) {
+            $filename = $data['posyandu_nama'] . '.' . $file->getExtension();
+            $path = './assets/images/profil';
+            if ($file->move($path, $filename, true)) {
+                $data['posyandu_foto'] = $filename;
+            }
+        }
         if ($model->insert($data)) {
             return redirect()->to(previous_url())->with('success', 'Data Posyandu Berhasil Ditambahkan');
         }
@@ -34,7 +42,14 @@ class Posyandu extends BaseController
     {
         $posyandu_id = $this->request->getPost('posyandu_id');
         $data['posyandu_nama'] =  $this->request->getPost('posyandu_nama');
-
+        $file = $this->request->getFile('file');
+        if (!empty($file) && $file->isValid()) {
+            $filename = $data['posyandu_nama'] . '.' . $file->getExtension();
+            $path = './assets/images/profil';
+            if ($file->move($path, $filename, true)) {
+                $data['posyandu_foto'] = $filename;
+            }
+        }
         $model = new PosyanduModel();
         $model->where('posyandu_id', $posyandu_id);
         $model->update($posyandu_id, $data);

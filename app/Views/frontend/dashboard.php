@@ -50,6 +50,7 @@
           <?php if (session()->has('balita')) : ?>
             <li class=""><a href="<?= base_url('hasilukur') ?>" class="scrollto">Halaman Hasil Ukur</a></li>
             <li class=""><a href="<?= base_url('auth') ?>" class="scrollto">Login (Admin / Petugas)</a></li>
+            <li class=""><a href="<?= base_url('logout') ?>" class="scrollto">Logout</a></li>
           <?php elseif (session()->has('user')) : ?>
             <li class=""><a href="<?= base_url(session('user')->user_type) ?>" class="scrollto">Halaman <?= session('user')->user_type ?></a></li>
           <?php else : ?>

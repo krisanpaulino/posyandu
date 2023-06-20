@@ -14,7 +14,7 @@ class PosyanduModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['posyandu_nama'];
+    protected $allowedFields    = ['posyandu_nama', 'posyandu_foto'];
 
     // Dates
     protected $useTimestamps = false;
@@ -25,7 +25,8 @@ class PosyanduModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'posyandu_nama' => 'required'
+        'posyandu_nama' => 'required',
+        'posyandu_foto' => 'required'
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;

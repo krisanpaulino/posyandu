@@ -36,6 +36,7 @@ $routes->get('hasilukur/(:num)', 'Antropometri::detailUkurFront/$1');
 $routes->get('auth', 'Auth::loginPage');
 $routes->post('login', 'Auth::login');
 $routes->post('logout', 'Auth::logout');
+$routes->get('logout', 'Auth::logout');
 
 $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('/', 'Home::admin');
@@ -52,6 +53,7 @@ $routes->group('admin', ['filter' => 'admin'], static function ($routes) {
     $routes->get('posyandu', 'Posyandu::index');
     $routes->post('posyandu/tambah', 'Posyandu::store');
     $routes->post('posyandu/hapus', 'Posyandu::hapus');
+    $routes->post('posyandu/update', 'Posyandu::update');
 
     $routes->get('/', 'Home::petugas');
     $routes->get('balita', 'Balita::index');
@@ -99,6 +101,7 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->post('balita/update', 'Balita::update');
     $routes->post('balita/hapus', 'Balita::delete');
     $routes->post('balita/buat-akun', 'Balita::buatAkun');
+    $routes->post('laporan-balita', 'Balita::laporanBalita');
 
     $routes->get('periksa', 'Periksa::index');
     $routes->get('periksa/(:num)', 'Periksa::periksa/$1');

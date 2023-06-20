@@ -3,9 +3,14 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\Pdfgenerator;
 use App\Models\BalitaModel;
+use App\Models\HasilukurModel;
+use App\Models\PeriodeModel;
 use App\Models\PosyanduModel;
 use App\Models\UserModel;
+
+use function PHPSTORM_META\type;
 
 class Balita extends BaseController
 {
@@ -22,12 +27,15 @@ class Balita extends BaseController
         }
         $data['title'] = 'Data Balita';
         $data['balita'] = $balita;
-
+        $model = new PeriodeModel();
+        $data['periode'] = $model->findUrutan();
         return view('balita/index', $data);
     }
     public function store()
     {
         $data = $this->request->getPost();
+        if ($data['balita_umur'] > 59)
+            return redirect()->to(previous_url())->with('danger', 'Umur balita maksimal 59 bulan!')->withInput();
         $model = new BalitaModel();
         $data['balita_tgllahir'] = date('Y-m-d', strtotime($data['balita_tgllahir']));
         if (session('user')->user_type == 'petugas')
@@ -118,5 +126,51 @@ class Balita extends BaseController
         $model->where('balita_id', $balita_id);
         $model->delete();
         return redirect()->to(previous_url())->with('success', 'Data dihapus!');
+    }
+
+    function laporanBalita()
+    {
+        helper('user');
+        $posyandu_id = null;
+        if (session('user')->user_type == 'operator') {
+            $posyandu_id = petugas()->posyandu_id;
+        } elseif (session('user')->user_type == 'admin') {
+            $posyandu_id = $this->request->getPost('posyandu_id');
+        }
+        $periode_id = $this->request->getPost('periode_id');
+        $model = new PeriodeModel();
+        $model->where('periode_id', $periode_id);
+        $periode = $model->first();
+        if ($posyandu_id != null) {
+            $model = new PosyanduModel();
+            $posyandu = $model->find($posyandu_id)->posyandu_nama;
+        } else {
+            $posyandu = 'Semua';
+        }
+        $model = new BalitaModel();
+        $balita = $model->findCetak($periode_id, $posyandu_id);
+
+        $data = [
+            'title_pdf' => 'Laporan Hasil Posyandu',
+            'periode' => $periode,
+            'posyandu' => $posyandu,
+            'balita' => $balita,
+        ];
+        // dd($data);
+        $pdf = new Pdfgenerator();
+
+        // title dari pdf
+
+        // filename dari pdf ketika didownload
+        $file_pdf = 'laporan_balita';
+        // setting paper
+        $paper = 'A4';
+        //orientasi paper potrait / landscape
+        $orientation = "landscape";
+
+        $html = view('pdf-balita', $data);
+
+        // run dompdf
+        $pdf->generate($html, $file_pdf, $paper, $orientation);
     }
 }

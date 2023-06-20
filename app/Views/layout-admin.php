@@ -112,7 +112,7 @@
                         <li>
                             <a href="<?= base_url('admin/posyandu') ?>" class="waves-effect">
                                 <i class="ri-home-2-line"></i>
-                                <span>Data Posyandu</span>
+                                <span>Data Kelompok Penimbang</span>
                             </a>
                         </li>
                         <li>

@@ -53,4 +53,9 @@ class PeriodeModel extends Model
         $this->where('periode_status', 'buka');
         return $this->first();
     }
+    public function findUrutan()
+    {
+        $this->orderBy('periode_id', 'desc');
+        return $this->find();
+    }
 }

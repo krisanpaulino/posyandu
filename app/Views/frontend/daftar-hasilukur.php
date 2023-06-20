@@ -52,6 +52,9 @@
                                 <?php endforeach ?>
                             </tbody>
                         </table>
+                        <div class="mb-4">
+                            <div id="chart"></div>
+                        </div>
                     <?php else : ?>
                         <div class="text-center">
                             <h5>Belum ada data pengukuran untuk balita dengan nama <b><?= $balita->balita_nama ?></b>!</h5>
@@ -68,4 +71,76 @@
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
+<?= $this->endSection(); ?>
+<?= $this->section('scripts'); ?>
+<script>
+    var options = {
+        chart: {
+            type: 'line'
+        },
+        series: [{
+            name: 'BB',
+            data: [<?php foreach ($hasilukur as $h) {
+                        echo $h->hasilukur_bb . ',';
+                    } ?>]
+        }],
+        xaxis: {
+
+            categories: [<?php foreach ($hasilukur as $h) {
+                                echo "'" . $h->hasilukur_umur . " bln(" . konversiBulan($h->periode_bulan) . " " . $h->periode_tahun . ")',";
+                            } ?>],
+            labels: {
+                show: true,
+                rotate: -45,
+                rotateAlways: false,
+                hideOverlappingLabels: true,
+                showDuplicates: false,
+                trim: false,
+                minHeight: undefined,
+                maxHeight: 120,
+                style: {
+                    colors: [],
+                    fontSize: '12px',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontWeight: 400,
+                    cssClass: 'apexcharts-xaxis-label',
+                },
+                offsetX: 0,
+                offsetY: 0,
+                format: undefined,
+                formatter: undefined,
+                datetimeUTC: true,
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: "MMM 'yy",
+                    day: 'dd MMM',
+                    hour: 'HH:mm',
+                },
+            },
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                colors: ['#333']
+            },
+            offsetX: 30
+        },
+        title: {
+            text: 'Grafik Perkembangan Balita',
+            offsetX: 0,
+            offsetY: 0,
+            style: {
+                color: '#333',
+                fontSize: '16px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                cssClass: 'apexcharts-xaxis-title',
+            },
+        },
+    }
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+    chart.render();
+</script>
 <?= $this->endSection(); ?>

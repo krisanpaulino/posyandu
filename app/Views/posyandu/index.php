@@ -56,6 +56,7 @@
                                 <td>
                                     <form action="<?= base_url('admin/posyandu/hapus') ?>" method="post">
                                         <input type="hidden" name="posyandu_id" value="<?= $p->posyandu_id ?>">
+                                        <button type="button" class="badge bg-info border waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#edit<?= $p->posyandu_id ?>">Edit</button>
                                         <button type="submit" onclick="return confirm('Apakah anda yakin?')" class="badge bg-danger border text-light">Hapus</button>
                                     </form>
                                 </td>
@@ -68,7 +69,7 @@
     </div> <!-- end col -->
 </div>
 
-<form action="<?= base_url('admin/posyandu/tambah') ?>" method="post" autocomplete="off">
+<form action="<?= base_url('admin/posyandu/tambah') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
     <div id="tambah" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -86,6 +87,15 @@
                             <?php endif; ?>
                         </div>
                     </div>
+                    <div class="form-group mb-4">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control <?= (isset(session('errors')['file'])) ? 'is-invalid' : '' ?>" id="file" accept="image/*" name="file" value="<?= old('file') ?>">
+                        <div class="invalid-feedback">
+                            <?php if (isset(session('errors')['file'])) : ?>
+                                <?= session('errors')['file'] ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -96,4 +106,45 @@
         </div><!-- /.modal-dialog -->
     </div>
 </form>
+
+<?php foreach ($posyandu as $p) : ?>
+    <form action="<?= base_url('admin/posyandu/update') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+        <div id="edit<?= $p->posyandu_id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Tambah Posyandu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="posyandu_id" value="<?= $p->posyandu_id ?>">
+                        <div class="form-group mb-4">
+                            <label for="posyandu_nama">Nama Posyandu</label>
+                            <input type="text" class="form-control <?= (isset(session('errors')['posyandu_nama'])) ? 'is-invalid' : '' ?>" id="posyandu_nama" name="posyandu_nama" value="<?= old('posyandu_nama', $p->posyandu_nama) ?>">
+                            <div class="invalid-feedback">
+                                <?php if (isset(session('errors')['posyandu_nama'])) : ?>
+                                    <?= session('errors')['posyandu_nama'] ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="file">Foto</label>
+                            <input type="file" class="form-control <?= (isset(session('errors')['file'])) ? 'is-invalid' : '' ?>" id="file" accept="image/*" name="file" value="<?= old('file') ?>">
+                            <div class="invalid-feedback">
+                                <?php if (isset(session('errors')['file'])) : ?>
+                                    <?= session('errors')['file'] ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Tutup</button>
+                        <button type="sumbit" class="btn btn-primary waves-effect waves-light">Ubah</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </form>
+<?php endforeach; ?>
 <?= $this->endSection(); ?>
