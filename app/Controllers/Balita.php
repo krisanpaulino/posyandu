@@ -156,7 +156,7 @@ class Balita extends BaseController
             'posyandu' => $posyandu,
             'balita' => $balita,
         ];
-        if (sessio()->has('admin_logged_id')) {
+        if (session()->has('admin_logged_id')) {
             $model = new PosyanduModel();
             $data['posyandu'] = $model->findAll();
         }
