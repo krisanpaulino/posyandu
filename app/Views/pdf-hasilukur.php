@@ -47,8 +47,9 @@
         <img src="<?= base_url('assets/images/kop.png') ?>" alt="">
     </div>
     <div>
-        <p>Posyandu : <?= $posyandu->posyandu_nama ?></p>
-        <p>Periode Ukur : <?= konversiBulan($periode->periode_bulan) ?> <?= $periode->periode_tahun ?></p>
+        <p>Desa : RATULODONG</p>
+        <p>Kelompok Penimbang : <?= $posyandu->posyandu_nama ?></p>
+        <p>Tanggal Ukur : <?= $tglukur ?></p>
     </div>
     <table id="table">
         <thead class="text-center">

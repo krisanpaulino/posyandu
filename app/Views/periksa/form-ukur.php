@@ -72,7 +72,15 @@
                     <input type="hidden" name="periode_id" value="<?= $periode->periode_id ?>">
                     <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
 
-                    <h4 class="card-title">Formulir Pengukuran</h4>
+                    <div class="form-group mb-4">
+                        <label for="hasilukur_tgl">Tanggal Ukur</label>
+                        <input type="date" class="form-control <?= (isset(session('errors')['hasilukur_tgl'])) ? 'is-invalid' : '' ?>" id="hasilukur_tgl" name="hasilukur_tgl" value="<?= old('hasilukur_tgl') ?>">
+                        <div class="invalid-feedback">
+                            <?php if (isset(session('errors')['hasilukur_tgl'])) : ?>
+                                <?= session('errors')['hasilukur_tgl'] ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                     <div class="form-group mb-4">
                         <label for="hasilukur_posisi">Posisi</label>
                         <select class="form-select <?= (isset(session('errors')['hasilukur_posisi'])) ? 'is-invalid' : '' ?>" id="hasilukur_posisi" name="hasilukur_posisi" required>

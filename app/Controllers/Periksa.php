@@ -70,7 +70,7 @@ class Periksa extends BaseController
         $data = $this->request->getPost();
         $data['periode_id'] = $periode->periode_id;
         $data['hasilukur_umur'] = $balita->balita_umur;
-        $data['hasilukur_tgl'] = date('Y-m-d');
+        // $data['hasilukur_tgl'] = date('Y-m-d');
 
         //Hitung BMI
         $bmi = $data['hasilukur_bb'] / pow(($data['hasilukur_pbtb'] / 100), 2);

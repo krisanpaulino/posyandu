@@ -44,7 +44,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <th style="width: 10%;">No</th>
-                        <th>Posyandu</th>
+                        <th>Kelompok Penimbang</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -74,12 +74,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Tambah Posyandu</h5>
+                    <h5 class="modal-title" id="myModalLabel">Tambah Kelompok Penimbang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group mb-4">
-                        <label for="posyandu_nama">Nama Posyandu</label>
+                        <label for="posyandu_nama">Nama Kelompok Penimbang</label>
                         <input type="text" class="form-control <?= (isset(session('errors')['posyandu_nama'])) ? 'is-invalid' : '' ?>" id="posyandu_nama" name="posyandu_nama" value="<?= old('posyandu_nama') ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['posyandu_nama'])) : ?>
@@ -113,13 +113,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Tambah Posyandu</h5>
+                        <h5 class="modal-title" id="myModalLabel">Tambah Kelompok Penimbang</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="posyandu_id" value="<?= $p->posyandu_id ?>">
                         <div class="form-group mb-4">
-                            <label for="posyandu_nama">Nama Posyandu</label>
+                            <label for="posyandu_nama">Nama Kelompok Penimbang</label>
                             <input type="text" class="form-control <?= (isset(session('errors')['posyandu_nama'])) ? 'is-invalid' : '' ?>" id="posyandu_nama" name="posyandu_nama" value="<?= old('posyandu_nama', $p->posyandu_nama) ?>">
                             <div class="invalid-feedback">
                                 <?php if (isset(session('errors')['posyandu_nama'])) : ?>

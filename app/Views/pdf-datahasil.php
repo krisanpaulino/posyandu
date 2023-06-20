@@ -48,35 +48,58 @@
     </div>
     <div>
         <p>Desa : RATULODONG</p>
-        <p>Kelompok Pengukur : <?= $posyandu ?></p>
-        <p>Tanggal Ukur : <?= $balita[0]->hasilukur_tgl ?></p>
+        <p>Kelompok Penimbang : <?= $posyandu->posyandu_nama ?></p>
+        <p>Tanggal Ukur : <?= $tglukur ?></p>
     </div>
     <table id="table">
         <thead class="text-center">
             <tr>
-                <th style="width: auto;">No</th>
-                <th>Nama Balita</th>
-                <th>Umur Balita</th>
-                <th>Jenis Kelamin</th>
-                <th>Tgl Lahir</th>
-                <th>Alamat</th>
-                <th>Nama Orangtua</th>
-                <th>Kelompok Pengukur</th>
+                <th style="width: auto;" rowspan="2">No</th>
+                <th rowspan="2">Nama Balita</th>
+                <th rowspan="2">L/P</th>
+                <th rowspan="2">Tanggal Lahir</th>
+                <th rowspan="2">Nama Orangtua</th>
+                <th rowspan="2">Alamat</th>
+                <th rowspan="2">Posyandu</th>
+                <th rowspan="2">Desa</th>
+                <th rowspan="2">Tgl Ukur</th>
+                <th rowspan="2">Umur</th>
+                <th rowspan="2">BB</th>
+                <th rowspan="2">Posisi</th>
+                <th rowspan="2">PB/TB</th>
+                <th rowspan="2">BMI</th>
+                <th colspan="4">Status</th>
 
+            </tr>
+            <tr>
+                <th>BB/U</th>
+                <th>TB/U</th>
+                <th>BB/TB</th>
+                <th>IMT/U</th>
             </tr>
         </thead>
         <tbody>
             <?php $no = 1; ?>
-            <?php foreach ($balita as $b) : ?>
+            <?php foreach ($hasilukur as $h) : ?>
                 <tr>
-                    <td><?= $no++ ?></td>
-                    <td><?= $b->balita_nama ?></td>
-                    <td><?= $b->hasilukur_umur ?></td>
-                    <td><?= $b->balita_jk ?></td>
-                    <td><?= $b->balita_tgllahir ?></td>
-                    <td><?= $b->balita_alamat ?></td>
-                    <td><?= $b->balita_orangtua ?></td>
-                    <td><?= $b->posyandu_nama ?></td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $h->balita_nama ?></td>
+                    <td><?= $h->balita_jk ?></td>
+                    <td><?= $h->balita_tgllahir ?></td>
+                    <td><?= $h->balita_orangtua ?></td>
+                    <td><?= $h->balita_alamat ?></td>
+                    <td><?= $h->posyandu_nama ?></td>
+                    <td><?= $h->balita_alamat ?></td>
+                    <td><?= $h->hasilukur_tgl ?></td>
+                    <td><?= $h->hasilukur_umur ?></td>
+                    <td><?= $h->hasilukur_bb ?></td>
+                    <td><?= $h->hasilukur_posisi ?></td>
+                    <td><?= $h->hasilukur_pbtb ?></td>
+                    <td><?= $h->hasilukur_bmi ?></td>
+                    <td><?= getStatus('BB/U', $h->hasilukur_c1) ?></td>
+                    <td><?= getStatus('TB/U', $h->hasilukur_c2) ?></td>
+                    <td><?= getStatus('BB/TB', $h->hasilukur_c3) ?></td>
+                    <td><?= getStatus('IMT/U', $h->hasilukur_c4) ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>

@@ -42,7 +42,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <th style="width: 10%;">No</th>
-                        <th>Posyandu</th>
+                        <th>Kelompok Penimbang</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>

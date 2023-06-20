@@ -199,7 +199,41 @@ class Antropometri extends BaseController
         return view('frontend/detail-hasilukur', $data);
     }
 
+    public function cetakHasilPdf($posyandu_id, $periode_id)
+    {
+        $model = new HasilukurModel();
+        $hasilukur = $model->findHasil($posyandu_id, $periode_id);
+        $tglukur = $model->getTglUkur($periode_id, $posyandu_id);
 
+        $model = new PeriodeModel();
+        $periode = $model->find($periode_id);
+
+        $model = new PosyanduModel();
+        $posyandu = $model->find($posyandu_id);
+
+        $data = [
+            'title_pdf' => 'Laporan Hasil Posyandu',
+            'periode' => $periode,
+            'posyandu' => $posyandu,
+            'hasilukur' => $hasilukur,
+            'tglukur' => $tglukur
+        ];
+        $pdf = new Pdfgenerator();
+
+        // title dari pdf
+
+        // filename dari pdf ketika didownload
+        $file_pdf = date('Y-m-d-His') . '-Data-HasilUkur';
+        // setting paper
+        $paper = 'A4';
+        //orientasi paper potrait / landscape
+        $orientation = "landscape";
+
+        $html = view('pdf-datahasil', $data,);
+
+        // run dompdf
+        $pdf->generate($html, $file_pdf, $paper, $orientation);
+    }
     public function cetakHasil($posyandu_id, $periode_id)
     {
         $model = new HasilukurModel();
@@ -319,7 +353,7 @@ class Antropometri extends BaseController
 
         $model = new HasilukurModel();
         $jumlah = $model->dataJumlah($posyandu_id, $periode_id);
-
+        $tglukur = $model->getTglUkur($posyandu_id, $periode_id);
         $gizi = [];
         $tinggi = [];
 
@@ -339,7 +373,8 @@ class Antropometri extends BaseController
             'posyandu' => $posyandu,
             'gizi' => $gizi,
             'tinggi' => $tinggi,
-            'jumlah' => $jumlah
+            'jumlah' => $jumlah,
+            'tglukur' => $tglukur
         ];
         $pdf = new Pdfgenerator();
 

@@ -5,12 +5,10 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Libraries\Pdfgenerator;
 use App\Models\BalitaModel;
-use App\Models\HasilukurModel;
 use App\Models\PeriodeModel;
 use App\Models\PosyanduModel;
 use App\Models\UserModel;
-
-use function PHPSTORM_META\type;
+use DateTime;
 
 class Balita extends BaseController
 {
@@ -34,6 +32,11 @@ class Balita extends BaseController
     public function store()
     {
         $data = $this->request->getPost();
+        //Hitung umur
+        $tgllahir = new DateTime($data['balita_tgllahir']);
+        $now = new DateTime();
+        $diff = $now->diff($tgllahir);
+        $data['balita_umur'] = ($diff->y * 12) + $diff->m;
         if ($data['balita_umur'] > 59)
             return redirect()->to(previous_url())->with('danger', 'Umur balita maksimal 59 bulan!')->withInput();
         $model = new BalitaModel();

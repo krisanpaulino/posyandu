@@ -93,7 +93,7 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="<?= base_url() ?>" class="waves-effect">
+                            <a href="<?= base_url('admin') ?>" class="waves-effect">
                                 <i class="ri-dashboard-line"></i>
                                 <span>Dashboard</span>
                             </a>

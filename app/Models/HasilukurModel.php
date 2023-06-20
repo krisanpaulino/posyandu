@@ -165,7 +165,7 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
         return $query->getRowArray();
     }
 
-    function findJumlah($periode_id, $posyandu_id  = null)
+    public function findJumlah($periode_id, $posyandu_id  = null)
     {
         $this->selectCount('hasilukur_id', 'jumlah');
         $this->select('statusgizi.*');
@@ -176,5 +176,13 @@ FROM hasilukur JOIN balita b on b.balita_id = hasilukur.balita_id WHERE periode_
             $this->where('balita.posyandu_id', $posyandu_id);
         $this->groupBy('hasilukur_status');
         return $this->find();
+    }
+    public function getTglUkur($periode_id, $posyandu_id)
+    {
+        $this->select('hasilukur_tgl');
+        $this->join('balita', 'balita.balita_id = hasilukur.balita_id');
+        $this->where('periode_id', $periode_id);
+        $this->where('balita.posyandu_id', $posyandu_id);
+        return $this->first()->hasilukur_tgl;
     }
 }
