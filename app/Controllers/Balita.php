@@ -156,6 +156,10 @@ class Balita extends BaseController
             'posyandu' => $posyandu,
             'balita' => $balita,
         ];
+        if (sessio()->has('admin_logged_id')) {
+            $model = new PosyanduModel();
+            $data['posyandu'] = $model->findAll();
+        }
         // dd($data);
         $pdf = new Pdfgenerator();
 
