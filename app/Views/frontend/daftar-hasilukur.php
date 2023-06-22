@@ -53,7 +53,7 @@
                             </tbody>
                         </table>
                         <div class="mb-4">
-                            <div id="chart"></div>
+                            <div id="chart" style="height: 100%"></div>
                         </div>
                     <?php else : ?>
                         <div class="text-center">
@@ -80,7 +80,8 @@
     console.log(cetak);
     var options = {
         chart: {
-            type: 'line'
+            type: 'line',
+            height: 1000
         },
         series: [{
             name: 'BB',
