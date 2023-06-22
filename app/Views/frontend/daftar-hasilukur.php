@@ -74,16 +74,55 @@
 <?= $this->endSection(); ?>
 <?= $this->section('scripts'); ?>
 <script>
+    var cetak = '<?php foreach ($hasilukur as $h) {
+                        echo $h->hasilukur_bb . ',';
+                    } ?>';
+    console.log(cetak);
     var options = {
         chart: {
             type: 'line'
         },
         series: [{
             name: 'BB',
-            data: [<?php foreach ($hasilukur as $h) {
-                        echo $h->hasilukur_bb . ',';
+            data: [<?php foreach ($hasilukur as $key => $h) {
+                        if ($key != 0)
+                            echo ',';
+                        echo $h->hasilukur_bb;
                     } ?>]
         }],
+        yaxis: {
+            show: true,
+            showAlways: true,
+            showForNullSeries: true,
+            seriesName: undefined,
+            opposite: false,
+            reversed: false,
+            logarithmic: false,
+            logBase: 10,
+            tickAmount: 6,
+            min: 9,
+            max: 30,
+            forceNiceScale: false,
+            floating: false,
+            decimalsInFloat: undefined,
+            labels: {
+                show: true,
+                align: 'right',
+                minWidth: 0,
+                maxWidth: 160,
+                style: {
+                    colors: [],
+                    fontSize: '12px',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontWeight: 400,
+                    cssClass: 'apexcharts-yaxis-label',
+                },
+                offsetX: 0,
+                offsetY: 0,
+                rotate: 0,
+            },
+
+        },
         xaxis: {
 
             categories: [<?php foreach ($hasilukur as $h) {

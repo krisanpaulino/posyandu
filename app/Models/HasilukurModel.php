@@ -111,7 +111,7 @@ class HasilukurModel extends Model
         $this->join('statusgizi', 'statusgizi.statusgizi_id = hasilukur.hasilukur_status', 'left');
         $this->join('periode', 'periode.periode_id = hasilukur.periode_id');
         $this->where('balita_id', $balita_id);
-        $this->orderBy('hasilukur.periode_id', 'desc');
+        $this->orderBy('hasilukur.periode_id', 'asc');
         return $this->find();
     }
 
