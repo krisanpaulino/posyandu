@@ -103,7 +103,7 @@
             tickAmount: 60,
             min: 1,
             max: 30,
-            forceNiceScale: false,
+            forceNiceScale: true,
             floating: false,
             decimalsInFloat: undefined,
             labels: {
