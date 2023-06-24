@@ -53,7 +53,7 @@
                             </tbody>
                         </table>
                         <div class="mb-4">
-                            <div id="chart"></div>
+                            <div id="chart" style="height: 100%"></div>
                         </div>
                     <?php else : ?>
                         <div class="text-center">
@@ -80,7 +80,8 @@
     console.log(cetak);
     var options = {
         chart: {
-            type: 'line'
+            type: 'line',
+            height: 1000
         },
         series: [{
             name: 'BB',
@@ -99,10 +100,10 @@
             reversed: false,
             logarithmic: false,
             logBase: 10,
-            tickAmount: 6,
-            min: 9,
+            tickAmount: 60,
+            min: 1,
             max: 30,
-            forceNiceScale: false,
+            forceNiceScale: true,
             floating: false,
             decimalsInFloat: undefined,
             labels: {
