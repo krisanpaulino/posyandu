@@ -135,7 +135,7 @@ class Balita extends BaseController
     {
         helper('user');
         $posyandu_id = null;
-        if (session('user')->user_type == 'operator') {
+        if (session('user')->user_type == 'petugas') {
             $posyandu_id = petugas()->posyandu_id;
         } elseif (session('user')->user_type == 'admin') {
             $posyandu_id = $this->request->getPost('posyandu_id');
