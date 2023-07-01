@@ -45,9 +45,9 @@
 <body>
     <div style="text-align:center">
         <img src="<?= base_url('assets/images/kop.png') ?>" alt="">
+        <h1>LAPORAN HASIL POSYANDU BAYI-BALITA</h1>
     </div>
     <div>
-        <p>Desa : RATULODONG</p>
         <p>Kelompok Penimbang : <?= $posyandu->posyandu_nama ?></p>
         <p>Tanggal Ukur : <?= $tglukur ?></p>
     </div>
