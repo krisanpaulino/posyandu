@@ -45,6 +45,8 @@
 <body>
     <div style="text-align:center">
         <img src="<?= base_url('assets/images/kop.png') ?>" alt="">
+        <h1>DATA BAYI-BALITA POSYANDU WAIKLIBANG</h1>
+
     </div>
     <div>
         <p>Desa : RATULODONG</p>
