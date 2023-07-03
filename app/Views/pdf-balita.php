@@ -45,12 +45,11 @@
 <body>
     <div style="text-align:center">
         <img src="<?= base_url('assets/images/kop.png') ?>" alt="">
-        <h1>DATA BAYI-BALITA POSYANDU WAIKLIBANG</h1>
+        <h3>DATA BAYI-BALITA POSYANDU WAIKLIBANG</h3>
 
     </div>
     <div>
-        <p>Desa : RATULODONG</p>
-        <p>Kelompok Pengukur : <?= $posyandu ?></p>
+        <p>Kelompok Penimbang : <?= $posyandu ?></p>
         <p>Tanggal Ukur : <?= $balita[0]->hasilukur_tgl ?></p>
     </div>
     <table id="table">
@@ -63,7 +62,7 @@
                 <th>Tgl Lahir</th>
                 <th>Alamat</th>
                 <th>Nama Orangtua</th>
-                <th>Kelompok Pengukur</th>
+                <th>Kelompok Penimbang</th>
 
             </tr>
         </thead>
@@ -73,7 +72,7 @@
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $b->balita_nama ?></td>
-                    <td><?= $b->hasilukur_umur ?></td>
+                    <td><?= $b->hasilukur_umur ?> bulan</td>
                     <td><?= $b->balita_jk ?></td>
                     <td><?= $b->balita_tgllahir ?></td>
                     <td><?= $b->balita_alamat ?></td>

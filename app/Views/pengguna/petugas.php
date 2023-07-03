@@ -35,7 +35,7 @@
                             <th>Email</th>
                             <th>Nama</th>
                             <th>JK</th>
-                            <th>Posyandu</th>
+                            <th>Kelompok Penimbang</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -137,9 +137,9 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="posyandu_id">Posyandu</label>
+                        <label for="posyandu_id">Kelompok Penimbang</label>
                         <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
-                            <option value="">Pilih Posyandu</option>
+                            <option value="">Pilih Kelompok Penimbang</option>
                             <?php foreach ($posyandu as $p) : ?>
                                 <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == old('posyandu_id')) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>
                             <?php endforeach ?>

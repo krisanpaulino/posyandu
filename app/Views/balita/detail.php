@@ -107,7 +107,7 @@
                     </div>
                     <?php if (session('user')->user_type == "admin") : ?>
                         <div class="form-group mb-4">
-                            <label for="posyandu_id">Posyandu</label>
+                            <label for="posyandu_id">Kelompok Penimbang</label>
                             <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
                                 <?php foreach ($posyandu as $p) : ?>
                                     <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == $balita->posyandu_id) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>
