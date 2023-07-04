@@ -50,7 +50,7 @@
                     <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
                     <div class="form-group mb-4">
                         <label for="balita_nama">Nama Balita</label>
-                        <input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama', $balita->balita_nama) ?>">
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama', $balita->balita_nama) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_nama'])) : ?>
                                 <?= session('errors')['balita_nama'] ?>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_umur">Umur Balita (bln)</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur', $balita->balita_umur) ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur', $balita->balita_umur) ?>" disabled>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_umur'])) : ?>
                                 <?= session('errors')['balita_umur'] ?>

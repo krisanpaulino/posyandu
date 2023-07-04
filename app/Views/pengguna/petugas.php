@@ -75,7 +75,7 @@
 
                     <div class="form-group mb-4">
                         <label for="petugas_nama">Nama Petugas</label>
-                        <input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama') ?>" required>
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama') ?>" required>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['petugas_nama'])) : ?>
                                 <?= session('errors')['petugas_nama'] ?>
