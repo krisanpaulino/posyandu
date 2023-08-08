@@ -47,6 +47,8 @@ class PengumumanModel extends Model
     public function findPengumuman($posyandu_id)
     {
         $this->where('posyandu_id', $posyandu_id);
+        $this->orderBy('pengumuman_id', 'desc');
+        $this->limit(5);
         return $this->find();
     }
 }

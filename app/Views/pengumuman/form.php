@@ -1,4 +1,4 @@
-<?= $this->extend('layout-admin'); ?>
+<?= $this->extend('layout-petugas'); ?>
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-12">
@@ -39,16 +39,23 @@
                 </p>
                 <!-- end row -->
                 <!-- Content Here -->
-                <form action="<?= base_url(session('user')->user_type . '/pengumuman/' . $action) ?>" method="post" class="form">
+                <form action="<?= base_url(session('user')->user_type . '/' . 'pengumuman/' . $action) ?>" method="post" class="form">
                     <input type="hidden" name="pengumuman_id" value="<?= $pengumuman->pengumuman_id ?>">
                     <div class="form-group mb-4">
-                        <label for="pengumuman_judul"></label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['pengumuman_judul'])) ? 'is-invalid' : '' ?>" id="pengumuman_judul" name="pengumuman_judul" value="<?= old('pengumuman_judul') ?>">
+                        <label for="pengumuman_judul">Judul</label>
+                        <input type="text" class="form-control <?= (isset(session('errors')['pengumuman_judul'])) ? 'is-invalid' : '' ?>" id="pengumuman_judul" name="pengumuman_judul" value="<?= old('pengumuman_judul', $pengumuman->pengumuman_judul) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['pengumuman_judul'])) : ?>
                                 <?= session('errors')['pengumuman_judul'] ?>
                             <?php endif; ?>
                         </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="pengumuman_isi">Isi Pengumuman</label>
+                        <textarea name="pengumuman_isi" id="editor1" cols="30" rows="10"><?= old('pengumuman_judul', $pengumuman->pengumuman_isi) ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

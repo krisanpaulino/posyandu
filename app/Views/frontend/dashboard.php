@@ -109,6 +109,31 @@
 
   <main id="main">
 
+    <?php if (session()->has('balita')) : ?>
+      <section class="faq">
+        <div class="container">
+
+          <div class="section-title">
+            <h2>Pengumuman</h2>
+          </div>
+
+          <ul class="faq-list">
+
+            <?php foreach ($pengumuman as $p) : ?>
+              <li>
+                <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#pengumumuman<?= $p->pengumuman_id ?>"><?= $p->pengumuman_judul ?> - <?= $p->pengumuman_tgl ?><i class="bx bx-down-arrow-alt icon-show"></i><i class="bx bx-x icon-close"></i></a>
+                <div id="pengumumuman<?= $p->pengumuman_id ?>" class="collapse" data-bs-parent=".faq-list">
+                  <?= $p->pengumuman_isi ?>
+                </div>
+              </li>
+            <?php endforeach; ?>
+
+          </ul>
+
+        </div>
+      </section>
+    <?php endif; ?>
+
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">

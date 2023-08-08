@@ -23,7 +23,8 @@ class Pengumuman extends BaseController
         $pengumuman = new PengumumanModel();
         $data = [
             'pengumuman' => $pengumuman,
-            'title' => 'Tambah Pengumuman'
+            'title' => 'Tambah Pengumuman',
+            'action' => 'store'
         ];
         return view('pengumuman/form', $data);
     }
@@ -32,6 +33,7 @@ class Pengumuman extends BaseController
         $posyandu_id = petugas()->posyandu_id;
         $data = $this->request->getPost();
         $data['posyandu_id'] = $posyandu_id;
+        $data['pengumuman_tgl'] = date('Y-m-d H:i:s');
         $model = new PengumumanModel();
         if ($model->insert($data))
             return redirect()->to('petugas/pengumuman')->with('success', 'Pengumuman berhasil dibuat!!');
@@ -43,7 +45,9 @@ class Pengumuman extends BaseController
         $pengumuman = $model->find($pengumuman_id);
         $data = [
             'title' => 'Edit Pengumuman',
-            'pengumuman' => $pengumuman
+            'pengumuman' => $pengumuman,
+            'action' => 'update'
+
         ];
         return view('pengumuman/form', $data);
     }

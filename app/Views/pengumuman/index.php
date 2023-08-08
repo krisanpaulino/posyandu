@@ -1,4 +1,4 @@
-<?= $this->extend('layout-admin'); ?>
+<?= $this->extend('layout-petugas'); ?>
 <?= $this->section('content'); ?>
 <div class="row">
     <div class="col-12">
@@ -39,6 +39,9 @@
                 </p>
                 <!-- end row -->
                 <!-- Content Here -->
+                <div class="mb-4 d-flex justify-content-between">
+                    <a href="<?= base_url(session('user')->user_type . '/pengumuman/tambah') ?>" class="btn btn-primary waves-effect waves-light">Tambah</a>
+                </div>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -50,12 +53,12 @@
                     <tbody>
                         <?php foreach ($pengumuman as $p) : ?>
                             <tr>
-                                <td><?= $p->pengumuan_judul ?></td>
+                                <td><?= $p->pengumuman_judul ?></td>
                                 <td><?= $p->pengumuman_tgl ?></td>
                                 <td>
                                     <form action="<?= base_url(session('user')->user_type . '/pengumuman/hapus') ?>" method="post">
                                         <input type="hidden" name="pengumuman_id" value="<?= $p->pengumuman_id ?>">
-                                        <a href="<?= base_url(session('user')->user_type . '/pengumuman/' . $p->pengumuman_id) ?>" class="badge bg-primary">Detail</a>
+                                        <a href="<?= base_url(session('user')->user_type . '/pengumuman' . '/' . $p->pengumuman_id) ?>" class="badge bg-primary">Detail</a>
                                         <button type="submit" class="badge bg-danger border" onclick="return confirm('Apakah anda yakin?')">Hapus</button>
                                     </form>
                                 </td>

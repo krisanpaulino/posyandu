@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\BalitaModel;
 use App\Models\HasilukurModel;
+use App\Models\PengumumanModel;
 use App\Models\PeriodeModel;
 
 class Home extends BaseController
@@ -13,9 +14,12 @@ class Home extends BaseController
         // if (session()->has('user')) {
         //     return redirect()->to(session()->get('user')->user_type);
         // }
-
+        $model = new PengumumanModel();
+        if (session()->has('balita')) {
+            $pengumuman = $model->findPengumuman(session('balita')->posyandu_id);
+            $data['pengumuman'] = $pengumuman;
+        }
         $data['title'] = 'Posyandu';
-
 
         return view('frontend/dashboard', $data);
         // return redirect('auth');
@@ -68,6 +72,7 @@ class Home extends BaseController
 
     public function orangtua()
     {
+
         $data['title'] = 'Posyandu';
         return view('dashboard/umum', $data);
     }

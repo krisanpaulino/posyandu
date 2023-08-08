@@ -121,6 +121,13 @@ $routes->group('petugas', ['filter' => 'petugas'], static function ($routes) {
     $routes->get('laporan-hasil/(:num)/(:num)', 'Antropometri::laporanHasil/$1/$2');
 
     $routes->get('hasilukur/(:num)/detail/(:num)', 'Antropometri::detailUkur/$1/$2');
+
+    $routes->get('pengumuman', 'Pengumuman::index');
+    $routes->get('pengumuman/tambah', 'Pengumuman::tambah');
+    $routes->get('pengumuman/(:num)', 'Pengumuman::edit/$1');
+    $routes->post('pengumuman/store', 'Pengumuman::store');
+    $routes->post('pengumuman/update', 'Pengumuman::update');
+    $routes->post('pengumuman/hapus', 'Pengumuman::delete');
 });
 
 
