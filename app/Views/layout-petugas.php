@@ -118,6 +118,12 @@
                                 <span>Antropometri</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('petugas/pengumuman') ?>" class="waves-effect">
+                                <i class="ri-clipboard-line"></i>
+                                <span>Pengumuman</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
