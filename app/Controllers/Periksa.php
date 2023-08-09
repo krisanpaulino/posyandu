@@ -131,6 +131,7 @@ class Periksa extends BaseController
             $skor = ($data['hasilukur_bb'] - $medianbbpertb[$field . $jk]) / ($medianbbpertb[$field . 'plus1' . $jk] - $medianbbpertb[$field . $jk]);
         }
         $data['hasilukur_c3'] = $skor;
+        // dd($data['hasilukur_c3']);
         //DAPATKAN BOBOT
         $data['hasilukur_c3bobot'] = getambang('BB/TB', $data['hasilukur_c3'])->ambangbatas_bobotkriteria;
 
@@ -147,6 +148,7 @@ class Periksa extends BaseController
         // dd($skorimt);
         // dd(($bmi - $medianimt['medianimt_' . $jk]) / ($medianimt['medianimt_plus1' . $jk] - $medianimt['medianimt_' . $jk]));
         // $data['hasilukur_c4'] = $skor;
+        // dd($data['hasilukur_c4']);
         //DAPATKAN BOBOT
         $data['hasilukur_c4bobot'] = getambang('IMT/U', $data['hasilukur_c4'])->ambangbatas_bobotkriteria;
 
