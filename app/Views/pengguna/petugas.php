@@ -35,7 +35,7 @@
                             <th>Email</th>
                             <th>Nama</th>
                             <th>JK</th>
-                            <th>Posyandu</th>
+                            <th>Kelompok Penimbang</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -75,7 +75,7 @@
 
                     <div class="form-group mb-4">
                         <label for="petugas_nama">Nama Petugas</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama') ?>" required>
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama') ?>" required>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['petugas_nama'])) : ?>
                                 <?= session('errors')['petugas_nama'] ?>
@@ -137,9 +137,9 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="posyandu_id">Posyandu</label>
+                        <label for="posyandu_id">Kelompok Penimbang</label>
                         <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
-                            <option value="">Pilih Posyandu</option>
+                            <option value="">Pilih Kelompok Penimbang</option>
                             <?php foreach ($posyandu as $p) : ?>
                                 <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == old('posyandu_id')) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>
                             <?php endforeach ?>

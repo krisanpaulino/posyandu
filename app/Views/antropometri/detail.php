@@ -81,7 +81,7 @@
                             <tr>
                                 <td><?= $b->balita_nama ?></td>
                                 <td><?= $b->balita_jk ?></td>
-                                <td><?= $b->balita_umur ?></td>
+                                <td><?= $b->balita_umur ?> bulan</td>
                                 <td><?= $b->hasilukur_skor ?></td>
                                 <td><?= $b->statusgizi_nama ?></td>
                                 <td>

@@ -45,7 +45,7 @@
 <body>
     <div style="text-align:center">
         <img src="<?= base_url('assets/images/kop.png') ?>" alt="">
-        <h1>LAPORAN HASI PENGUKURAN POSYANDU BAYI-BALITA</h1>
+        <h3>LAPORAN HASIL PENGUKURAN POSYANDU BAYI-BALITA</h3>
     </div>
     <div>
         <p>Kelompok Penimbang : <?= $posyandu->posyandu_nama ?></p>

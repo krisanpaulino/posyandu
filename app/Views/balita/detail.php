@@ -50,7 +50,7 @@
                     <input type="hidden" name="balita_id" value="<?= $balita->balita_id ?>">
                     <div class="form-group mb-4">
                         <label for="balita_nama">Nama Balita</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama', $balita->balita_nama) ?>">
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama', $balita->balita_nama) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_nama'])) : ?>
                                 <?= session('errors')['balita_nama'] ?>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <label for="balita_umur">Umur Balita (bln)</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur', $balita->balita_umur) ?>">
+                        <input type="text" class="form-control <?= (isset(session('errors')['balita_umur'])) ? 'is-invalid' : '' ?>" id="balita_umur" name="balita_umur" value="<?= old('balita_umur', $balita->balita_umur) ?>" disabled>
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_umur'])) : ?>
                                 <?= session('errors')['balita_umur'] ?>
@@ -107,7 +107,7 @@
                     </div>
                     <?php if (session('user')->user_type == "admin") : ?>
                         <div class="form-group mb-4">
-                            <label for="posyandu_id">Posyandu</label>
+                            <label for="posyandu_id">Kelompok Penimbang</label>
                             <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
                                 <?php foreach ($posyandu as $p) : ?>
                                     <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == $balita->posyandu_id) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>

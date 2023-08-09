@@ -24,7 +24,7 @@
                                 <div class="flex-grow-1">
                                     <p class="text-truncate font-size-14 mb-2">Jumlah Balita</p>
                                     <h4 class="mb-2"><?= $jumlah_balita->jumlah ?></h4>
-                                    <p class="text-muted mb-0">Posyandu <?= petugas()->posyandu_nama ?></p>
+                                    <p class="text-muted mb-0">Kelompok Penimbang <?= petugas()->posyandu_nama ?></p>
                                 </div>
                                 <div class="avatar-sm">
                                     <span class="avatar-title bg-light text-primary rounded-3">

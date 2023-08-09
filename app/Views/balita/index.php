@@ -45,7 +45,7 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Posyandu</th>
+                            <th>Kelompok Penimbang</th>
                             <th>Nama Balita</th>
                             <th>JK</th>
                             <th>Tgl Lahir</th>
@@ -90,7 +90,7 @@
                 <div class="modal-body">
                     <div class="form-group mb-4">
                         <label for="balita_nama">Nama Balita</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama') ?>">
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['balita_nama'])) ? 'is-invalid' : '' ?>" id="balita_nama" name="balita_nama" value="<?= old('balita_nama') ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['balita_nama'])) : ?>
                                 <?= session('errors')['balita_nama'] ?>

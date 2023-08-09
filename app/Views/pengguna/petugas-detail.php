@@ -56,7 +56,7 @@
                     <input type="hidden" name="petugas_id" value="<?= $petugas->petugas_id ?>">
                     <div class="form-group mb-4">
                         <label for="petugas_nama">Nama</label>
-                        <input type="text" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama', $petugas->petugas_nama) ?>">
+                        <input type="text" onkeydown="return /[a-z, ]/i.test(event.key)" class="form-control <?= (isset(session('errors')['petugas_nama'])) ? 'is-invalid' : '' ?>" id="petugas_nama" name="petugas_nama" value="<?= old('petugas_nama', $petugas->petugas_nama) ?>">
                         <div class="invalid-feedback">
                             <?php if (isset(session('errors')['petugas_nama'])) : ?>
                                 <?= session('errors')['petugas_nama'] ?>
@@ -112,9 +112,9 @@
                         </div>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="posyandu_id">Posyandu</label>
+                        <label for="posyandu_id">Kelompok Penimbang</label>
                         <select class="form-select <?= (isset(session('errors')['posyandu_id'])) ? 'is-invalid' : '' ?>" id="posyandu_id" name="posyandu_id" required>
-                            <option value="">Pilih Posyandu</option>
+                            <option value="">Pilih Kelompok Penimbang</option>
                             <?php foreach ($posyandu as $p) : ?>
                                 <option value="<?= $p->posyandu_id ?>" <?= ($p->posyandu_id == $petugas->posyandu_id) ? 'selected' : '' ?>><?= $p->posyandu_nama ?></option>
                             <?php endforeach ?>
